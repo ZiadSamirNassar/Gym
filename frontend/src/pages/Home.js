@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/Home.css';
 import MembershipCard from '../components/MembershipCard';
-import Membershipdata from '../data/Homedata';
+import Membershipdata from '../data/MembershipData';
 import { Container, Row, Col } from 'react-bootstrap';
 
 

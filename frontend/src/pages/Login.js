@@ -1,4 +1,4 @@
-
+import Topimg from '../components/Topimg'
 import React from 'react';
 import { 
   Container,
@@ -10,6 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = () => {
 
   return (
+    <>
+    <Topimg />
+
     <Container className="d-grid gap-2 mt-5" >
       <h2 className="text-center mb-4">Login</h2>
               <Form >
@@ -29,10 +32,11 @@ const Login = () => {
                 
 
                 <Button variant="primary" type="submit" className="w-100">
-                  Sign in
+                  Log in
                 </Button>
               </Form>
     </Container>
+    </>
   );
 }
 

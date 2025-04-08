@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Badge, ListGroup } from 'react-bootstrap';
+import { Card, Button, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ const MembershipCard = ({ membership }) => {
   let borderColor = '#007bff';
   
   switch(membership.type) {
-    case 'black-card':
+    case 'blateniom':
       cardStyle = { backgroundColor: '#343a40' };
       textColor = 'white';
       buttonVariant = 'light';

@@ -1,10 +1,18 @@
-import Login from "./pages/Login";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import { Outlet } from "react-router";
+
 
 function App() {
   return (
     <>
     <div className="App">
-      <Login />
+      <NavBar />
+    
+      
+      <Outlet/>
+
+      <Footer/>
     </div>
     </>
   );

@@ -1,0 +1,28 @@
+/* في ملف App.css */
+.membership-card {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .membership-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .join-btn {
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+
+  /* في ملف CSS إضافي */
+.gold-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff8e1 100%);
+    border: 1px solid #ffd700;
+  }
+  
+  .gold-card .card-title {
+    text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.3);
+  }
+  
+  .vip-badge {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
