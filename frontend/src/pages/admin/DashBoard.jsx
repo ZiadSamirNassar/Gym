@@ -3,7 +3,7 @@ import MembershipTable from "../../components/admin/MembershipTable";
 import UsersTable from "../../components/admin/UsersTable";
 import TranersTable from "../../components/admin/TranersTable";
 
-const DashPord = ( ) => {
+const DashBoard = ( ) => {
 
 
     return( 
@@ -23,4 +23,4 @@ const DashPord = ( ) => {
 
 }
 
-export default DashPord;
+export default DashBoard;
