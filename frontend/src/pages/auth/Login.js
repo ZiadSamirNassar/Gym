@@ -1,4 +1,4 @@
-import Topimg from '../components/Topimg'
+import Topimg from '../../shared/Topimg'
 import React from 'react';
 import { 
   Container,
