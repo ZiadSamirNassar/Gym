@@ -1,0 +1,41 @@
+.easy { 
+    background-color: #8ADD82;
+    padding: 3px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px black;
+}
+
+.intermediate { 
+    background-color: #EE973F;
+    padding: 3px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px black;
+}
+
+.advanced { 
+    background-color: #EE5359;
+    padding: 3px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px black;
+}
+
+.gold-plan { 
+    background-color: #EFBF04;
+    color: white;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px rgb(158, 158, 158);
+}
+
+.con { 
+    padding: 80px 50px 0px 350px;
+    margin: 0px;
+}

@@ -4,6 +4,10 @@ import AdminLayout from "./layouts/AdminLayout";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import MemberLayout from "./layouts/MemberLayout";
+import MemberHome from "./pages/member/MemberHome";
+import TrainerLayout from "./layouts/TrainerLayout";
+import MemberPlans from "./pages/member/MemberPlans";
   
 export const router = createBrowserRouter([
     {
@@ -27,6 +31,26 @@ export const router = createBrowserRouter([
     { 
         path: "/admin", 
         element: <AdminLayout />
+    },
+    { 
+        path: "/m",
+        element: <MemberLayout />,
+        children: [
+          { 
+            index: true,
+            element: <MemberHome />
+          },
+          { 
+            path: "plans",
+            element: <MemberPlans />
+          }
+        ]
+    },
+    { 
+        path: "/t",
+        element: <TrainerLayout />,
+        children: [
+        ]
     },
     {
         path: "*",
