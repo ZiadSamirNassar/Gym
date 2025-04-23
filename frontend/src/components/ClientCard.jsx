@@ -3,8 +3,8 @@ import PlanLabel from "./PlanLabel"
 
 const ClientCard = () => {
   return (
-    <Container fluid>
-      <Card style={{width: "500px", height: "350px"}} className="mb-3 p-3 d-flex flex-column justify-content-between rounded-3 border-3 gap-3">
+    <Container fluid className="p-0">
+      <Card style={{height: "350px"}} className="w-100 mb-3 p-3 d-flex flex-column justify-content-between rounded-3 border-3 gap-3">
           <div className="d-flex w-100 justify-content-between align-items-center">
             <Card.Title className="fs-5 m-0">ahmed abdelaleem</Card.Title>
             <PlanLabel variant="gold"/>

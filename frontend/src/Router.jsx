@@ -8,6 +8,9 @@ import MemberLayout from "./layouts/MemberLayout";
 import MemberHome from "./pages/member/MemberHome";
 import TrainerLayout from "./layouts/TrainerLayout";
 import MemberPlans from "./pages/member/MemberPlans";
+import TrainerHome from "./pages/trainer/TrainerHome";
+import TrainerClients from "./pages/trainer/TrainerClients";
+import Chat from "./pages/Chat";
   
 export const router = createBrowserRouter([
     {
@@ -43,6 +46,10 @@ export const router = createBrowserRouter([
           { 
             path: "plans",
             element: <MemberPlans />
+          },
+          { 
+            path: "chat",
+            element: <Chat />
           }
         ]
     },
@@ -50,6 +57,18 @@ export const router = createBrowserRouter([
         path: "/t",
         element: <TrainerLayout />,
         children: [
+          { 
+            index: true,
+            element: <TrainerHome />
+          },
+          { 
+            path: "clients",
+            element: <TrainerClients />
+          },
+          { 
+            path: "chat",
+            element: <Chat />
+          }
         ]
     },
     {
