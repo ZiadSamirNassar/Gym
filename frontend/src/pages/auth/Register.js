@@ -14,7 +14,7 @@ const Register = () => {
     <>
     <Topimg />
     
-    <Container className="d-grid gap-2 mt-5" >
+    <Container className="d-grid gap-2 mt-5" style={{width: '50%',display: 'flex', flexDirection: 'column', }}>
       <h2 className="text-center mb-4">Register</h2>
               <Form >
                 <Form.Group className="mb-3" controlId="name">

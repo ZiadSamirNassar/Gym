@@ -14,11 +14,6 @@ const NavBar = () => {
                 <Nav.Link href="#features">Features</Nav.Link>
                 <Nav.Link href="#pricing">Pricing</Nav.Link>
               </Nav>
-              <Nav>
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/register1">Register1</Nav.Link>
-                <Nav.Link href="/register2">Register2</Nav.Link>
-              </Nav>
             </Container>
           </Navbar>
         </>

@@ -1,9 +1,13 @@
 import {createBrowserRouter} from "react-router";
 import App from "./App";
 import Login from "./pages/auth/Login";
-import  Register from "./pages/auth/Register";
+import Register from "./pages/auth/Register";
 import DashPord from "./pages/admin/DashPord";
 import Home from "./pages/Home";
+import Message from "./components/chat/Message";
+import MessageInput from "./components/chat/MessageInput";
+import UserBadge from "./components/chat/UserBadge";
+import Sidebar from "./components/chat/Sidebar";
 
   
 export const router = createBrowserRouter([
@@ -16,12 +20,38 @@ export const router = createBrowserRouter([
             element: <Home/>
           },
           {
-              path: "/login",
-              element: <Login />,
+            path: "/auth",
+            children: [
+              {
+                path: "/auth/login",
+                element: <Login />,
+              },
+              {
+                path: "/auth/register",
+                element: <Register/>,
+              }
+            ]
           },
           {
-              path: "/register",
-              element: <Register/>,
+            path: "/chat",
+            children: [
+              {
+                path: "/chat/message",
+                element: <Message/>
+              },
+              {
+                path: "/chat/messageinput",
+                element: <MessageInput/>
+              },
+              {
+                path: "/chat/userbadge",
+                element: <UserBadge/>
+              },
+              {
+                path: "/chat/sidebar",
+                element: <Sidebar/>
+              },
+            ]
           },
           {
             path: "/DashPord",
