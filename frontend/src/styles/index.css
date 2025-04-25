@@ -1,3 +1,31 @@
+html {
+  font-family: "Noto Sans";
+}
+
+body {
+  font-family: "Noto Sans";
+}
+
+pre, code, kbd, samp {
+  font-family: "Noto Sans";
+}
+
+input, button, select, optgroup, textarea {
+  font-family: inherit;
+}
+
+.tooltip {
+  font-family: "Noto Sans";
+}
+
+.popover {
+  font-family: "Noto Sans";
+}
+
+.text-monospace {
+  font-family: "Noto Sans";
+}
+
 .easy { 
     background-color: #8ADD82;
     padding: 3px 10px;
