@@ -1,0 +1,177 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\models\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:models\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\data\\gymdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:data\\gymdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\gym_project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:gym_project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\gym_project.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:gym_project.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\gym_project\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 240,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Trainer.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Models\\Trainer.cs",
+              "RelativeDocumentMoniker": "Models\\Trainer.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Models\\Trainer.cs",
+              "RelativeToolTip": "Models\\Trainer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T21:24:58.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Models\\Admin.cs",
+              "RelativeDocumentMoniker": "Models\\Admin.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Models\\Admin.cs",
+              "RelativeToolTip": "Models\\Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T21:24:09.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Gym_project.csproj",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Gym_project.csproj",
+              "RelativeDocumentMoniker": "Gym_project.csproj",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Gym_project.csproj",
+              "RelativeToolTip": "Gym_project.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-27T21:19:56.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-27T21:18:40.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-27T21:18:37.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MembersController.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Controllers\\MembersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MembersController.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Controllers\\MembersController.cs",
+              "RelativeToolTip": "Controllers\\MembersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T06:58:40.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GymDbContext.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Data\\GymDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\GymDbContext.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Data\\GymDbContext.cs",
+              "RelativeToolTip": "Data\\GymDbContext.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAqwDgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T06:58:10.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Gym_project.http",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Gym_project.http",
+              "RelativeDocumentMoniker": "Gym_project.http",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Gym_project.http",
+              "RelativeToolTip": "Gym_project.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-04-27T21:19:49.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "Models\\Booking.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project\\Models\\Booking.cs",
+              "RelativeToolTip": "Models\\Booking.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T06:57:40.021Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
