@@ -1,3 +1,64 @@
+//using Gym_project.Data;
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.AspNetCore.Authentication.JwtBearer;
+//using Microsoft.IdentityModel.Tokens;
+//using System.Text;
+
+//var builder = WebApplication.CreateBuilder(args);
+
+//// 1. Configure EF Core
+//builder.Services.AddDbContext<GymDbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//// 2. Add Controllers
+//builder.Services.AddControllers();
+//builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
+
+//// 3. Configure JWT Authentication
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//})
+//.AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true,
+//        ValidIssuer = "yourIssuer",
+//        ValidAudience = "yourAudience",
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourSuper_SecretKey!123")) // Replace with strong key!
+//    };
+//});
+
+//builder.Services.AddAuthorization();
+
+//var app = builder.Build();
+
+//// Middleware
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+//app.UseHttpsRedirection();
+
+//// *** IMPORTANT: Order matters ***
+//app.UseAuthentication(); // <-- Add this
+//app.UseAuthorization();
+
+//app.MapControllers();
+
+//app.Run();
+
+
+
+
 using Gym_project.Data;
 using Microsoft.EntityFrameworkCore;
 

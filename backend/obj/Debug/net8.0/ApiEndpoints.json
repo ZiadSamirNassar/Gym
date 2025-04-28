@@ -24,5 +24,84 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
+    "Method": "GetPlans",
+    "RelativePath": "MembershipPlan",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
+    "Method": "CreatePlan",
+    "RelativePath": "MembershipPlan",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTOs.CreateMembershipPlanDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
+    "Method": "GetPlanById",
+    "RelativePath": "MembershipPlan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
+    "Method": "UpdatePlan",
+    "RelativePath": "MembershipPlan/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTOs.UpdateMembershipPlanDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
+    "Method": "DeletePlan",
+    "RelativePath": "MembershipPlan/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
