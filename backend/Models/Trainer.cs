@@ -19,3 +19,4 @@ public partial class Trainer
 
     public virtual ICollection<TrainingPlan> TrainingPlans { get; set; } = new List<TrainingPlan>();
 }
+
