@@ -1,4 +1,5 @@
 ﻿using Gym_project.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ namespace Gym_project.Controllers
 
         // GET /Members
         [HttpGet]
+        [Authorize(Roles = "admin")]
+
         public async Task<IActionResult> GetAllMembers()
         {
             var members = await _context.Members.ToListAsync();

@@ -57,7 +57,7 @@ namespace Gym_project.Controllers
 
         // POST /membershipplan  [Admin only]
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreatePlan([FromBody] CreateMembershipPlanDto dto)
         {
             var plan = new MembershipPlan
@@ -87,7 +87,7 @@ namespace Gym_project.Controllers
 
         // PUT /membershipplan/{id} [Admin only]
         [HttpPut("{id}")]
-       // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdatePlan(int id, [FromBody] UpdateMembershipPlanDto dto)
         {
             var plan = await _context.MembershipPlans.FindAsync(id);
@@ -107,7 +107,7 @@ namespace Gym_project.Controllers
 
         // DELETE /membershipplan/{id} [Admin only]
         [HttpDelete("{id}")]
-      //  [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeletePlan(int id)
         {
             var plan = await _context.MembershipPlans.FindAsync(id);
