@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Gym_project.Models;
-
-public partial class Trainer
+﻿namespace Gym_Backend.Models
 {
-    public int TrainerId { get; set; }
-
-    public string Name { get; set; } = null!;
-
-    public int Age { get; set; }
-
-    public virtual ICollection<ProgressReport> ProgressReports { get; set; } = new List<ProgressReport>();
-
-    public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();
-
-    public virtual User TrainerNavigation { get; set; } = null!;
-
-    public virtual ICollection<TrainingPlan> TrainingPlans { get; set; } = new List<TrainingPlan>();
+    public class Trainer
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Specialization { get; set; } = string.Empty;
+        public int Experience { get; set; }
+        public string Role { get; set; } = "Trainer";
+    }
 }
-

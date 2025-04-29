@@ -1,161 +1,54 @@
 [
   {
-    "ContainingType": "Gym_project.Controllers.AuthController",
-    "Method": "Login",
-    "RelativePath": "auth/login",
+    "ContainingType": "Gym_Backend.Controllers.AdminController",
+    "Method": "AddAdmin",
+    "RelativePath": "api/Admin/add",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "loginDto",
-        "Type": "Gym_project.DTO.LoginRequestDto",
+        "Name": "admin",
+        "Type": "Gym_Backend.Models.Admin",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.AuthController",
-    "Method": "Register",
-    "RelativePath": "auth/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "dto",
-        "Type": "Gym_project.DTO.RegisterMemberRequestDto",
-        "IsRequired": true
+        "Type": "Gym_Backend.Models.Admin",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "Gym_project.Controllers.AuthController",
-    "Method": "RegisterAdmin",
-    "RelativePath": "auth/register/admin",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Gym_project.DTO.RegisterAdminRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.AuthController",
-    "Method": "RegisterTrainer",
-    "RelativePath": "auth/register/trainer",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Gym_project.DTO.RegisterTrainerRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.MembersController",
-    "Method": "GetAllMembers",
-    "RelativePath": "Members",
+    "ContainingType": "Gym_Backend.Controllers.AdminController",
+    "Method": "GetAdmins",
+    "RelativePath": "api/Admin/all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.MembersController",
-    "Method": "GetMemberById",
-    "RelativePath": "Members/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gym_Backend.Models.Admin, Gym_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
-    "Method": "GetPlans",
-    "RelativePath": "MembershipPlan",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
-    "Method": "CreatePlan",
-    "RelativePath": "MembershipPlan",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Gym_project.DTOs.CreateMembershipPlanDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
-    "Method": "GetPlanById",
-    "RelativePath": "MembershipPlan/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
-    "Method": "UpdatePlan",
-    "RelativePath": "MembershipPlan/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "dto",
-        "Type": "Gym_project.DTOs.UpdateMembershipPlanDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.MembershipPlanController",
-    "Method": "DeletePlan",
-    "RelativePath": "MembershipPlan/{id}",
+    "ContainingType": "Gym_Backend.Controllers.AdminController",
+    "Method": "DeleteAdmin",
+    "RelativePath": "api/Admin/delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -169,35 +62,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Gym_project.Controllers.TrainerController",
-    "Method": "GetAllTrainers",
-    "RelativePath": "Trainer",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.TrainerController",
-    "Method": "CreateTrainer",
-    "RelativePath": "Trainer",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Gym_project.DTO.CreateTrainerDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym_project.Controllers.TrainerController",
-    "Method": "UpdateTrainer",
-    "RelativePath": "Trainer/{id}",
+    "ContainingType": "Gym_Backend.Controllers.AdminController",
+    "Method": "UpdateAdmin",
+    "RelativePath": "api/Admin/update/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -208,17 +75,65 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "Gym_project.DTO.UpdateTrainerDto",
+        "Name": "admin",
+        "Type": "Gym_Backend.Models.Admin",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Gym_project.Controllers.TrainingPlanController",
-    "Method": "GetTrainingPlans",
-    "RelativePath": "TrainingPlan",
+    "ContainingType": "Gym_Backend.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Gym_Backend.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Gym_Backend.Models.RegisterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GymManagementSystem.Controllers.GroupTrainingSessionsController",
+    "Method": "AddSession",
+    "RelativePath": "api/GroupTrainingSessions/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "session",
+        "Type": "Gym_Backend.Models.GroupTrainingSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GymManagementSystem.Controllers.GroupTrainingSessionsController",
+    "Method": "GetAllSessions",
+    "RelativePath": "api/GroupTrainingSessions/all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -226,19 +141,576 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Gym_project.Controllers.TrainingPlanController",
-    "Method": "CreateTrainingPlan",
-    "RelativePath": "TrainingPlan",
+    "ContainingType": "GymManagementSystem.Controllers.GroupTrainingSessionsController",
+    "Method": "DeleteSession",
+    "RelativePath": "api/GroupTrainingSessions/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GymManagementSystem.Controllers.GroupTrainingSessionsController",
+    "Method": "UpdateSession",
+    "RelativePath": "api/GroupTrainingSessions/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "session",
+        "Type": "Gym_Backend.Models.GroupTrainingSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.JoinedSessionsController",
+    "Method": "PostJoinedSession",
+    "RelativePath": "api/JoinedSessions",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
-        "Type": "Gym_project.DTO.CreateTrainingPlanDto",
+        "Name": "joinedSession",
+        "Type": "Gym_Backend.Models.JoinedSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Gym_Backend.Models.JoinedSession",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.JoinedSessionsController",
+    "Method": "GetJoinedSessions",
+    "RelativePath": "api/JoinedSessions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gym_Backend.Models.JoinedSession, Gym_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.JoinedSessionsController",
+    "Method": "GetJoinedSession",
+    "RelativePath": "api/JoinedSessions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Gym_Backend.Models.JoinedSession",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.JoinedSessionsController",
+    "Method": "DeleteJoinedSession",
+    "RelativePath": "api/JoinedSessions/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.JoinedSessionsController",
+    "Method": "CheckIfUserAlreadyJoined",
+    "RelativePath": "api/JoinedSessions/check",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "sessionTitle",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.MembershipsController",
+    "Method": "GetById",
+    "RelativePath": "api/Memberships/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Gym_Backend.Models.Membership",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.MembershipsController",
+    "Method": "Add",
+    "RelativePath": "api/Memberships/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "membership",
+        "Type": "Gym_Backend.Models.Membership",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Gym_Backend.Models.Membership",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.MembershipsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Memberships/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gym_Backend.Models.Membership, Gym_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.MembershipsController",
+    "Method": "Delete",
+    "RelativePath": "api/Memberships/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.MembershipsController",
+    "Method": "Update",
+    "RelativePath": "api/Memberships/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "Gym_Backend.Models.Membership",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.PersonalTrainingSessionsController",
+    "Method": "GetSessions",
+    "RelativePath": "api/PersonalTrainingSessions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.PersonalTrainingSessionsController",
+    "Method": "CreateSession",
+    "RelativePath": "api/PersonalTrainingSessions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "session",
+        "Type": "Gym_Backend.Models.PersonalTrainingSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.PersonalTrainingSessionsController",
+    "Method": "GetSession",
+    "RelativePath": "api/PersonalTrainingSessions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.PersonalTrainingSessionsController",
+    "Method": "UpdateSession",
+    "RelativePath": "api/PersonalTrainingSessions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedSession",
+        "Type": "Gym_Backend.Models.PersonalTrainingSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.PersonalTrainingSessionsController",
+    "Method": "DeleteSession",
+    "RelativePath": "api/PersonalTrainingSessions/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.SubscriptionsController",
+    "Method": "GetAllSubscriptions",
+    "RelativePath": "api/Subscriptions/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gym_Backend.Models.Subscription, Gym_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.SubscriptionsController",
+    "Method": "DeleteSubscription",
+    "RelativePath": "api/Subscriptions/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.SubscriptionsController",
+    "Method": "Subscribe",
+    "RelativePath": "api/Subscriptions/subscribe",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Gym_Backend.Controllers.SubscriptionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.SubscriptionsController",
+    "Method": "UpdatePaymentStatus",
+    "RelativePath": "api/Subscriptions/update-payment-status/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Gym_Backend.DTOs.UpdatePaymentStatusDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.TrainersController",
+    "Method": "GetTrainer",
+    "RelativePath": "api/Trainers/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Gym_Backend.Models.Trainer",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.TrainersController",
+    "Method": "AddTrainer",
+    "RelativePath": "api/Trainers/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "trainer",
+        "Type": "Gym_Backend.Models.Trainer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Gym_Backend.Models.Trainer",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.TrainersController",
+    "Method": "GetAllTrainers",
+    "RelativePath": "api/Trainers/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gym_Backend.Models.Trainer, Gym_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.TrainersController",
+    "Method": "DeleteTrainer",
+    "RelativePath": "api/Trainers/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.TrainersController",
+    "Method": "UpdateTrainer",
+    "RelativePath": "api/Trainers/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedTrainer",
+        "Type": "Gym_Backend.Models.Trainer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.UsersController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/Users/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.UsersController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/Users/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_Backend.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gym_Backend.WeatherForecast, Gym_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
   }
 ]

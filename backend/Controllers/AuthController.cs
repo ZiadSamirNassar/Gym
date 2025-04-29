@@ -1,180 +1,289 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Gym_project.Data;
-using Gym_project.Models;
-using Gym_project.DTOs;
-using Gym_project.DTO;
-using Microsoft.AspNetCore.Authorization;
+﻿//using Microsoft.AspNetCore.Mvc;
+//using Gym_Backend.Models;
+//using Gym_Backend.Data;
+//using Microsoft.AspNetCore.Identity;
+//using System.Threading.Tasks;
+//using System.Linq;
+
+//namespace Gym_Backend.Controllers
+//{
+//    [ApiController]
+//    [Route("api/auth")]
+//    public class AuthController : ControllerBase
+//    {
+//        private readonly ApplicationDbContext _context;
+
+//        public AuthController(ApplicationDbContext context)
+//        {
+//            _context = context;
+//        }
+
+//        [HttpPost("register")]
+//        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+//        {
+//            if (_context.Users.Any(u => u.Username == model.Username) ||
+//    _context.Admins.Any(a => a.Username == model.Username) ||
+//    _context.Trainers.Any(t => t.Username == model.Username))
+//            {
+//                return BadRequest(new { message = "Username already exists." });
+//            }
+
+//            var hasher = new PasswordHasher<User>();
+//            var user = new User
+//            {
+//                FirstName = model.FirstName,
+//                LastName = model.LastName,
+//                Email = model.Email,
+//                Username = model.Username,
+//                Password = "", // will be set below
+//                Age = model.Age,
+//                Plan = model.Plan,
+//                Type = "Member" // default
+//            };
+//            user.Password = hasher.HashPassword(user, model.Password);
+
+//            _context.Users.Add(user);
+//            await _context.SaveChangesAsync();
+
+//            return Ok(new { message = "Registration successful" });
+//        }
+
+//        [HttpPost("login")]
+//        public IActionResult Login([FromBody] LoginModel model)
+//        {
+//            if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
+//                return BadRequest(new { message = "Username and password are required." });
+
+//            var hasher = new PasswordHasher<User>(); // Using PasswordHasher<User> for consistency
+
+//            //// 1. Check in Users table
+//            //var user = _context.Users.FirstOrDefault(u => u.Username == model.Username);
+//            //if (user != null)
+//            //{
+//            //    var result = hasher.VerifyHashedPassword(user, user.Password, model.Password);
+//            //    if (result == PasswordVerificationResult.Success)
+//            //    {
+//            //        return Ok(new
+//            //        {
+//            //            message = "Login successful!",
+//            //            username = user.Username,
+//            //            type = user.Type, // could be "Member", etc.
+//            //            token = "dummy-token"
+//            //        });
+//            //    }
+//            //}
 
 
-namespace Gym_project.Controllers
+
+//            // 1. Check in Users table
+//            var user = _context.Users.FirstOrDefault(u => u.Username == model.Username);
+
+//            if (user != null)
+//            {
+//                var result = hasher.VerifyHashedPassword(user, user.Password, model.Password);
+//                if (result == PasswordVerificationResult.Success)
+//                {
+//                    // 2. Check if user is subscribed AFTER successful login
+//                    var isSubscribed = _context.Subscriptions.Any(s => s.Username == model.Username);
+
+//                    if (isSubscribed)
+//                    {
+//                        return Ok(new
+//                        {
+//                            message = "Login successful!",
+//                            username = user.Username,
+//                            type = "Member",
+//                            status = "subscribed",
+//                            token = "dummy-token"
+//                        });
+//                    }
+//                    else
+//                    {
+//                        return Ok(new
+//                        {
+//                            message = "Login successful!",
+//                            username = user.Username,
+//                            type = "Member",
+//                            token = "dummy-token"
+//                        });
+//                    }
+//                }
+
+//            }
+//            // 3. If user not found or password incorrect
+//            return Unauthorized(new { message = "Invalid username or password." });
+
+
+
+
+
+
+
+//            var admin = _context.Admins.FirstOrDefault(a => a.Username == model.Username);
+//            if (admin != null)
+//            {
+//                // Directly compare the stored password with the input password
+//                if (admin.Password == model.Password)
+//                {
+//                    return Ok(new
+//                    {
+//                        message = "Login successful!",
+//                        username = admin.Username,
+//                        type = "Admin",
+//                        token = "dummy-token"
+//                    });
+//                }
+//            }
+
+//            // 3. Check in Trainers table (plain text comparison for Trainer)
+//            var trainer = _context.Trainers.FirstOrDefault(t => t.Username == model.Username);
+//            if (trainer != null)
+//            {
+//                // Plain text comparison for Trainer
+//                if (trainer.Password == model.Password)
+//                {
+//                    return Ok(new
+//                    {
+//                        message = "Login successful!",
+//                        username = trainer.Username,
+//                        type = "Trainer",
+//                        token = "dummy-token"
+//                    });
+//                }
+//            }
+
+//            return Unauthorized(new { message = "Invalid username or password." });
+//        }
+//    }
+//}
+
+//---------------------------------------------------------------------------------------------------------------------
+using Microsoft.AspNetCore.Mvc;
+using Gym_Backend.Models;
+using Gym_Backend.Data;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Linq;
+
+namespace Gym_Backend.Controllers
 {
     [ApiController]
-    [Route("auth")]
+    [Route("api/auth")]
     public class AuthController : ControllerBase
     {
-        private readonly GymDbContext _context;
-        private readonly IConfiguration _config;
+        private readonly ApplicationDbContext _context;
 
-        public AuthController(GymDbContext context, IConfiguration config)
+        public AuthController(ApplicationDbContext context)
         {
             _context = context;
-            _config = config;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        {
+            if (_context.Users.Any(u => u.Username == model.Username) ||
+                _context.Admins.Any(a => a.Username == model.Username) ||
+                _context.Trainers.Any(t => t.Username == model.Username))
+            {
+                return BadRequest(new { message = "Username already exists." });
+            }
+
+            var hasher = new PasswordHasher<User>();
+            var user = new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Username = model.Username,
+                Password = "", // will be set below
+                Age = model.Age,
+                //Plan = model.Plan,
+                Type = "Member" // default
+            };
+            user.Password = hasher.HashPassword(user, model.Password);
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequestDto loginDto)
+        public IActionResult Login([FromBody] LoginModel model)
         {
-            // Find user
-            var user = _context.Users.FirstOrDefault(u => u.Username == loginDto.Username);
+            if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
+                return BadRequest(new { message = "Username and password are required." });
 
-            if (user == null || user.Password != loginDto.Password) // Replace with hash check in real life!
-                return Unauthorized("Invalid username or password");
+            var hasher = new PasswordHasher<User>();
 
-            var token = GenerateJwt(user);
-
-            return Ok(new LoginResponseDto
+            // 1. Check in Users table
+            var user = _context.Users.FirstOrDefault(u => u.Username == model.Username);
+            if (user != null)
             {
-                Username = user.Username,
-                Role = user.Type,
-                Token = token
-            });
-        }
+                var result = hasher.VerifyHashedPassword(user, user.Password, model.Password);
+                if (result == PasswordVerificationResult.Success)
+                {
+                    var isSubscribed = _context.Subscriptions.Any(s => s.Username == model.Username);
 
+                    if (isSubscribed)
+                    {
+                        return Ok(new
+                        {
+                            message = "Login successful!",
+                            username = user.Username,
+                            type = "Member",
+                            status = "subscribed",
+                            token = "dummy-token"
+                        });
+                    }
+                    else
+                    {
+                        return Ok(new
+                        {
+                            message = "Login successful!",
+                            username = user.Username,
+                            type = "Member",
+                            token = "dummy-token"
+                        });
+                    }
+                }
+            }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterMemberRequestDto dto)
-        {
-            // Check if username is taken
-            if (_context.Users.Any(u => u.Username == dto.Username))
-                return BadRequest("Username already exists");
-
-            // Optionally: Validate MembershipPlanId exists
-            var plan = await _context.MembershipPlans.FindAsync(dto.MembershipPlanId);
-            if (plan == null)
-                return BadRequest("Invalid MembershipPlanId");
-
-            // Create User
-            var user = new User
+            // 2. Check in Admins table
+            var admin = _context.Admins.FirstOrDefault(a => a.Username == model.Username);
+            if (admin != null)
             {
-                Username = dto.Username,
-                Password = dto.Password,  // TODO: Hash password 
-                Type = "member"
-            };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+                if (admin.Password == model.Password)
+                {
+                    return Ok(new
+                    {
+                        message = "Login successful!",
+                        username = admin.Username,
+                        type = "Admin",
+                        token = "dummy-token"
+                    });
+                }
+            }
 
-            // Create Member
-            var member = new Member
+            // 3. Check in Trainers table
+            var trainer = _context.Trainers.FirstOrDefault(t => t.Username == model.Username);
+            if (trainer != null)
             {
-                Name = dto.Name,
-                Age = dto.Age,
-                MembershipPlanId = dto.MembershipPlanId,
-                MemberNavigation = user
-            };
-            _context.Members.Add(member);
-            await _context.SaveChangesAsync();
+                if (trainer.Password == model.Password)
+                {
+                    return Ok(new
+                    {
+                        message = "Login successful!",
+                        username = trainer.Username,
+                        type = "Trainer",
+                        token = "dummy-token"
+                    });
+                }
+            }
 
-            var response = new RegisterMemberResponseDto
-            {
-                MemberId = member.MemberId,
-                Username = user.Username,
-                Role = user.Type,
-                Name = member.Name
-            };
-
-            return Ok(response);
-        }
-
-
-        // Register Admin [Admins only]
-        [HttpPost("register/admin")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterAdminRequestDto dto)
-        {
-            // Check for unique username
-            if (_context.Users.Any(u => u.Username == dto.Username))
-                return BadRequest("Username already exists");
-
-            // Create User
-            var user = new User
-            {
-                Username = dto.Username,
-                Password = dto.Password, // TODO : Hash 
-                Type = "admin"
-            };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            // Create Admin
-            var admin = new Admin
-            {
-                // check this ( if i delete the next line it still works successfully ) already delete it into another users (trainer , member)
-                AdminId = user.Id,
-                Name = dto.Name,
-                AdminNavigation = user
-            };
-            _context.Admins.Add(admin);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { admin.AdminId, dto.Username, Role = "admin" });
-        }
-
-        //  Register Trainer [Admins only]
-        [HttpPost("register/trainer")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> RegisterTrainer([FromBody] RegisterTrainerRequestDto dto)
-        {
-            if (_context.Users.Any(u => u.Username == dto.Username))
-                return BadRequest("Username already exists");
-
-            // user table
-            var user = new User
-            {
-                Username = dto.Username,
-                Password = dto.Password, // TODO Hash in 
-                Type = "trainer"
-            };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            // trainer table
-            var trainer = new Trainer
-            {
-                Name = dto.Name,
-                Age = dto.Age,
-                TrainerNavigation = user
-            };
-            _context.Trainers.Add(trainer);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { trainer.TrainerId, dto.Username, Role = "trainer" });
-        }
-
-        private string GenerateJwt(User user)
-        {
-            var jwtSettings = _config.GetSection("JwtSettings");
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Type)
-            };
-
-            var token = new JwtSecurityToken(
-                issuer: jwtSettings["Issuer"],
-                audience: jwtSettings["Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddHours(12),
-                signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            // 4. If no user matched
+            return Unauthorized(new { message = "Invalid username or password." });
         }
     }
 }
+

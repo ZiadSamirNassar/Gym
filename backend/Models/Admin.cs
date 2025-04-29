@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Gym_project.Models;
-
-public partial class Admin
+﻿namespace Gym_Backend.Models
 {
-    public int AdminId { get; set; }
-
-    public string Name { get; set; } = null!;
-
-    public virtual User AdminNavigation { get; set; } = null!;
+    public class Admin
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string Role { get; set; } = "Admin";
+    }
 }
