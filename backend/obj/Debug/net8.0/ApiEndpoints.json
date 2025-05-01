@@ -169,6 +169,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gym_project.Controllers.ProgressReportController",
+    "Method": "CreateProgressReport",
+    "RelativePath": "ProgressReport",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.CreateProgressReportDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.ProgressReportController",
+    "Method": "GetProgressReportsForMember",
+    "RelativePath": "ProgressReport/{memberId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "memberId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym_project.Controllers.TrainerController",
     "Method": "GetAllTrainers",
     "RelativePath": "Trainer",

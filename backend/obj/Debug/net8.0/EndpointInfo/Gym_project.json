@@ -289,6 +289,60 @@
         }
       }
     },
+    "/ProgressReport/{memberId}": {
+      "get": {
+        "tags": [
+          "ProgressReport"
+        ],
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/ProgressReport": {
+      "post": {
+        "tags": [
+          "ProgressReport"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProgressReportDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProgressReportDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProgressReportDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Trainer": {
       "get": {
         "tags": [
@@ -438,6 +492,33 @@
           "personalSessions": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateProgressReportDto": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "bodyFatPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "performanceNotes": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
