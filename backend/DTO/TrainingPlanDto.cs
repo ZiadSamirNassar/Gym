@@ -10,7 +10,6 @@
         public string Level { get; set; }
     }
 
-    // DTOs/CreateTrainingPlanDto.cs
     public class CreateTrainingPlanDto
     {
         public int? MemberId { get; set; }
