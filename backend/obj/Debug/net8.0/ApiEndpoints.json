@@ -201,6 +201,69 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "GetSessions",
+    "RelativePath": "Session",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "CreateSession",
+    "RelativePath": "Session",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.CreateSessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "UpdateSession",
+    "RelativePath": "Session/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.UpdateSessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "DeleteSession",
+    "RelativePath": "Session/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym_project.Controllers.TrainerController",
     "Method": "GetAllTrainers",
     "RelativePath": "Trainer",

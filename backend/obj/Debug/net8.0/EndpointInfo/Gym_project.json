@@ -343,6 +343,110 @@
         }
       }
     },
+    "/Session": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Session"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSessionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSessionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSessionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Session/{id}": {
+      "put": {
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSessionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSessionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSessionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Trainer": {
       "get": {
         "tags": [
@@ -523,6 +627,35 @@
         },
         "additionalProperties": false
       },
+      "CreateSessionDto": {
+        "type": "object",
+        "properties": {
+          "trainerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memberId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateTrainerDto": {
         "type": "object",
         "properties": {
@@ -670,6 +803,30 @@
           "personalSessions": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateSessionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memberId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false

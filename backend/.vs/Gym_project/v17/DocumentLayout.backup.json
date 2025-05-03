@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\dto\\createprogressreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:dto\\createprogressreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\controllers\\sessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:controllers\\sessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\dto\\progressreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:dto\\progressreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\dto\\createsessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:dto\\createsessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\models\\progressreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:models\\progressreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\dto\\sessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:dto\\sessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 363,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,49 +35,49 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 37,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateProgressReportDto.cs",
-              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\CreateProgressReportDto.cs",
-              "RelativeDocumentMoniker": "DTO\\CreateProgressReportDto.cs",
-              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\CreateProgressReportDto.cs",
-              "RelativeToolTip": "DTO\\CreateProgressReportDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T23:01:33.423Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProgressReportDto.cs",
-              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\ProgressReportDto.cs",
-              "RelativeDocumentMoniker": "DTO\\ProgressReportDto.cs",
-              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\ProgressReportDto.cs",
-              "RelativeToolTip": "DTO\\ProgressReportDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
+              "Title": "CreateSessionDto.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\CreateSessionDto.cs",
+              "RelativeDocumentMoniker": "DTO\\CreateSessionDto.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\CreateSessionDto.cs",
+              "RelativeToolTip": "DTO\\CreateSessionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T22:00:07.474Z"
+              "WhenOpened": "2025-05-03T00:52:52.597Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProgressReport.cs",
-              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Models\\ProgressReport.cs",
-              "RelativeDocumentMoniker": "Models\\ProgressReport.cs",
-              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Models\\ProgressReport.cs",
-              "RelativeToolTip": "Models\\ProgressReport.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Title": "SessionDto.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\SessionDto.cs",
+              "RelativeDocumentMoniker": "DTO\\SessionDto.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\SessionDto.cs",
+              "RelativeToolTip": "DTO\\SessionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T21:53:36.929Z"
+              "WhenOpened": "2025-05-03T00:49:54.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SessionController.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Controllers\\SessionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SessionController.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Controllers\\SessionController.cs*",
+              "RelativeToolTip": "Controllers\\SessionController.cs*",
+              "ViewState": "AgIAACYAAAAAAAAAAAAcwF0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T00:39:52.6Z",
+              "EditorCaption": ""
             }
           ]
         }
