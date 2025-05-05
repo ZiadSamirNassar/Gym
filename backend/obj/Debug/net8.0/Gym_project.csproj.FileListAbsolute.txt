@@ -434,7 +434,6 @@ D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\s
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Gym_project.props
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Gym_project.props
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets.pack.json
-D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\Gym_proj.82E6719B.Up2Date
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\Gym_project.dll
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\refint\Gym_project.dll
@@ -442,3 +441,4 @@ D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\G
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\Gym_project.genruntimeconfig.cache
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\ref\Gym_project.dll
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

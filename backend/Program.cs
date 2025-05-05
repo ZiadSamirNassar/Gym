@@ -80,12 +80,43 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
+//
+
+
+app.UseWebSockets();
+// Other middleware here...
+
+app.UseRouting();
+
+app.MapControllers();
+
+app.Map("/ws", async context =>
+{
+    if (context.WebSockets.IsWebSocketRequest)
+    {
+        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
+        await WebSocketHandler.HandleWebSocketConnectionAsync(webSocket);
+    }
+    else
+    {
+        context.Response.StatusCode = 400;
+    }
+});
+
+
+
+
 // *** IMPORTANT: Order matters ***
 app.UseAuthentication(); // <-- Add this
 app.UseAuthorization();
 
 app.MapControllers();
 
+
+
 app.Run();
+
+
 
 

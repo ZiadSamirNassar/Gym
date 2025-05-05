@@ -7,7 +7,7 @@
         public string Type { get; set; }
         public DateOnly? Date { get; set; }
         public int Duration { get; set; }
-        public int? MemberId { get; set; }
+      //  public int? MemberId { get; set; }
     }
 
 

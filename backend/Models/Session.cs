@@ -15,11 +15,7 @@ public partial class Session
 
     public int Duration { get; set; }
 
-    public int? MemberId { get; set; }
-
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
-
-    public virtual Member? Member { get; set; }
 
     public virtual Trainer? Trainer { get; set; }
 }
