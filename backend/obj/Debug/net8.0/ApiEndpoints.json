@@ -64,6 +64,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gym_project.Controllers.BookingController",
+    "Method": "GetBookedSessions",
+    "RelativePath": "Booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.BookingController",
+    "Method": "CreateAndBookPrivateSession",
+    "RelativePath": "Booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.CreatePrivateSessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.BookingController",
+    "Method": "BookSession",
+    "RelativePath": "Booking/{sessionId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym_project.Controllers.MembersController",
     "Method": "GetAllMembers",
     "RelativePath": "Members",
@@ -162,6 +204,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MessageController",
+    "Method": "GetMessagesWithUser",
+    "RelativePath": "Message/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
         "Type": "System.Int32",
         "IsRequired": true
       }

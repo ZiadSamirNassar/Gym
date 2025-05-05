@@ -21,7 +21,5 @@ public partial class Member
 
     public virtual ICollection<ProgressReport> ProgressReports { get; set; } = new List<ProgressReport>();
 
-    public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();
-
     public virtual ICollection<TrainingPlan> TrainingPlans { get; set; } = new List<TrainingPlan>();
 }
