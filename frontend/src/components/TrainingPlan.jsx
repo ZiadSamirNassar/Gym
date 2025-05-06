@@ -2,7 +2,7 @@ import Level from "./Level";
 import { Container, Card, Button } from "react-bootstrap"
 import { Alarm } from 'react-bootstrap-icons';
 
-const TrainingPlan = () => {
+const TrainingPlan = ({ plan }) => {
   return (
     <Container fluid className="p-0">
       <div className="mb-3 p-4 rounded-4 border border-3 border-secondary-subtle d-flex flex-column gap-5">

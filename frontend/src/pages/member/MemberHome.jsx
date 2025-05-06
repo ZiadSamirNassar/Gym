@@ -728,9 +728,6 @@ const MemberHome = () => {
       {/* Error Alert */}
       {error && <Alert variant="danger">{error}</Alert>}
 
-      {/* Success Alert */}
-      {successMessage && <Alert variant="success">{successMessage}</Alert>}
-
       <div className="d-flex align-items-center justify-content-between mb-4">
         <h4 className="fw-semibold">Your sessions</h4>
         <Button variant="dark" onClick={() => alert('Redirect to session booking')}>Book a session</Button>
