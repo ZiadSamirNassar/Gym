@@ -85,7 +85,6 @@ app.UseHttpsRedirection();
 
 
 app.UseWebSockets();
-// Other middleware here...
 
 app.UseRouting();
 
