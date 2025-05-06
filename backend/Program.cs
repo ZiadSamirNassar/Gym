@@ -80,46 +80,43 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
+//
+
+
+app.UseWebSockets();
+// Other middleware here...
+
+app.UseRouting();
+
+app.MapControllers();
+
+app.Map("/ws", async context =>
+{
+    if (context.WebSockets.IsWebSocketRequest)
+    {
+        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
+        await WebSocketHandler.HandleWebSocketConnectionAsync(webSocket);
+    }
+    else
+    {
+        context.Response.StatusCode = 400;
+    }
+});
+
+
+
+
 // *** IMPORTANT: Order matters ***
 app.UseAuthentication(); // <-- Add this
 app.UseAuthorization();
 
 app.MapControllers();
 
+
+
 app.Run();
 
 
 
-///////////////////////////////////////////////////////////
-//using Gym_project.Data;
-//using Microsoft.EntityFrameworkCore;
 
-//var builder = WebApplication.CreateBuilder(args);
-
-
-//builder.Services.AddDbContext<GymDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-//// Add services to the container.
-
-//builder.Services.AddControllers();
-//// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
-
-//app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-
-//app.MapControllers();
-
-//app.Run();

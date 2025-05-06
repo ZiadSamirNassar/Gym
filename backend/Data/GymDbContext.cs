@@ -74,13 +74,11 @@ public partial class GymDbContext : DbContext
 
             entity.HasOne(d => d.Member).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.MemberId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Booking__member___75A278F5");
+                .HasConstraintName("FK_Booking_Member");
 
             entity.HasOne(d => d.Session).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.SessionId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Booking__session__76969D2E");
+                .HasConstraintName("FK_Booking_Session");
         });
 
         modelBuilder.Entity<Member>(entity =>
@@ -194,16 +192,11 @@ public partial class GymDbContext : DbContext
             entity.Property(e => e.SessionId).HasColumnName("session_id");
             entity.Property(e => e.Date).HasColumnName("date");
             entity.Property(e => e.Duration).HasColumnName("duration");
-            entity.Property(e => e.MemberId).HasColumnName("member_id");
             entity.Property(e => e.TrainerId).HasColumnName("trainer_id");
             entity.Property(e => e.Type)
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("type");
-
-            entity.HasOne(d => d.Member).WithMany(p => p.Sessions)
-                .HasForeignKey(d => d.MemberId)
-                .HasConstraintName("FK__Session__member___72C60C4A");
 
             entity.HasOne(d => d.Trainer).WithMany(p => p.Sessions)
                 .HasForeignKey(d => d.TrainerId)

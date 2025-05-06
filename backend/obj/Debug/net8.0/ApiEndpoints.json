@@ -64,6 +64,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gym_project.Controllers.BookingController",
+    "Method": "GetBookedSessions",
+    "RelativePath": "Booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.BookingController",
+    "Method": "CreateAndBookPrivateSession",
+    "RelativePath": "Booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.CreatePrivateSessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.BookingController",
+    "Method": "BookSession",
+    "RelativePath": "Booking/{sessionId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym_project.Controllers.MembersController",
     "Method": "GetAllMembers",
     "RelativePath": "Members",
@@ -156,6 +198,117 @@
     "ContainingType": "Gym_project.Controllers.MembershipPlanController",
     "Method": "DeletePlan",
     "RelativePath": "MembershipPlan/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MessageController",
+    "Method": "GetMessagesWithUser",
+    "RelativePath": "Message/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.ProgressReportController",
+    "Method": "CreateProgressReport",
+    "RelativePath": "ProgressReport",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.CreateProgressReportDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.ProgressReportController",
+    "Method": "GetProgressReportsForMember",
+    "RelativePath": "ProgressReport/{memberId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "memberId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "GetSessions",
+    "RelativePath": "Session",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "CreateSession",
+    "RelativePath": "Session",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.CreateSessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "UpdateSession",
+    "RelativePath": "Session/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTO.UpdateSessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "DeleteSession",
+    "RelativePath": "Session/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
