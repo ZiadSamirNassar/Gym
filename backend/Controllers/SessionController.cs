@@ -35,7 +35,7 @@ namespace Gym_project.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(sessions);
+            return Ok(new { data = sessions });
         }
 
         // POST /sessions [Admin only]

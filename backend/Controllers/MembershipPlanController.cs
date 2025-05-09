@@ -32,7 +32,7 @@ namespace Gym_project.Controllers
                     Benefits = p.Benefits,
                     PersonalSessions = p.PersonalSessions
                 }).ToListAsync();
-            return Ok(plans);
+            return Ok(new { data = plans });
         }
 
         // GET /membershipplan/{id}
@@ -52,7 +52,7 @@ namespace Gym_project.Controllers
                 Benefits = plan.Benefits,
                 PersonalSessions = plan.PersonalSessions
             };
-            return Ok(dto);
+            return Ok(new { data = dto });
         }
 
         // POST /membershipplan  [Admin only]

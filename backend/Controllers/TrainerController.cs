@@ -34,17 +34,11 @@ namespace Gym_project.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(trainers);
+            return Ok(new { data = trainers });
         }
 
 
-        // without using DTO
-        //[HttpGet]
-        //public async Task<IActionResult> GetAllTrainers()
-        //{
-        //    var trainers = await _context.Trainers.ToListAsync();
-        //    return Ok(trainers);
-        //}
+    
 
 
         // POST /trainer (Admin only)
