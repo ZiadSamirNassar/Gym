@@ -442,3 +442,4 @@ D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\G
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\ref\Gym_project.dll
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\bin\Debug\net8.0\Newtonsoft.Json.dll

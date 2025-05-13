@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using System.Net.WebSockets;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +17,6 @@ builder.Services.AddDbContext<GymDbContext>(options =>
 // 2. Add Controllers
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -46,6 +48,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
 // 3. Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication(options =>
@@ -80,23 +83,20 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-//
-
-
+// Enable WebSocket support
 app.UseWebSockets();
-// Other middleware here...
 
 app.UseRouting();
 
-app.MapControllers();
-
+// Setup WebSocket endpoint
 app.Map("/ws", async context =>
 {
     if (context.WebSockets.IsWebSocketRequest)
     {
         var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-        await WebSocketHandler.HandleWebSocketConnectionAsync(webSocket);
+        // assuming WebSocketHandler is set to manage WebSocket connections
+        var webSocketHandler = context.RequestServices.GetRequiredService<WebSocketHandler>();
+        await webSocketHandler.HandleWebSocketConnectionAsync(context, webSocket);
     }
     else
     {
@@ -104,19 +104,10 @@ app.Map("/ws", async context =>
     }
 });
 
-
-
-
 // *** IMPORTANT: Order matters ***
-app.UseAuthentication(); // <-- Add this
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
 
-
-
 app.Run();
-
-
-
-

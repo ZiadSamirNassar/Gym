@@ -38,7 +38,7 @@ namespace Gym_project.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(messages);
+            return Ok(new { data = messages });
         }
     }
 }

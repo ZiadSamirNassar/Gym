@@ -64,7 +64,7 @@ namespace Gym_project.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(reports);
+            return Ok(new { data = reports });
         }
 
         [HttpPost]

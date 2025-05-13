@@ -23,7 +23,7 @@ namespace Gym_project.Controllers
         public async Task<IActionResult> GetAllMembers()
         {
             var members = await _context.Members.ToListAsync();
-            return Ok(members);
+            return Ok(new { data = members });
         }
 
         // GET /Members/{id}
@@ -35,7 +35,7 @@ namespace Gym_project.Controllers
             {
                 return NotFound();
             }
-            return Ok(member);
+            return Ok(new { data = member });
         }
     }
 }

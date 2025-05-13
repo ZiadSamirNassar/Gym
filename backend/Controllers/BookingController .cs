@@ -38,7 +38,7 @@ namespace Gym_project.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(bookings);
+            return Ok(new { data = bookings });
         }
 
         // POST /booking (Create a private session for the member )
@@ -95,7 +95,7 @@ namespace Gym_project.Controllers
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
-            return Ok(new { booking.BookingId });
+            return Ok(new {data = booking.BookingId });
         }
     }
 }

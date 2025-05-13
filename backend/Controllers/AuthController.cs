@@ -36,12 +36,12 @@ namespace Gym_project.Controllers
 
             var token = GenerateJwt(user);
 
-            return Ok(new LoginResponseDto
+            return Ok(new { data = new LoginResponseDto
             {
                 Username = user.Username,
                 Role = user.Type,
                 Token = token
-            });
+            } });
         }
 
 
@@ -86,7 +86,7 @@ namespace Gym_project.Controllers
                 Name = member.Name
             };
 
-            return Ok(response);
+            return Ok(new { data = response });
         }
 
 
@@ -120,7 +120,7 @@ namespace Gym_project.Controllers
             _context.Admins.Add(admin);
             await _context.SaveChangesAsync();
 
-            return Ok(new { admin.AdminId, dto.Username, Role = "admin" });
+            return Ok(new { data = new { admin.AdminId, dto.Username, Role = "admin" } });
         }
 
         //  Register Trainer [Admins only]
@@ -151,7 +151,7 @@ namespace Gym_project.Controllers
             _context.Trainers.Add(trainer);
             await _context.SaveChangesAsync();
 
-            return Ok(new { trainer.TrainerId, dto.Username, Role = "trainer" });
+            return Ok(new{ data = new { trainer.TrainerId, dto.Username, Role = "trainer" } });
         }
 
         private string GenerateJwt(User user)

@@ -36,7 +36,7 @@ namespace Gym_project.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(plans);
+            return Ok(new { data = plans });
         }
 
         // POST /trainingplans [Trainer only]
