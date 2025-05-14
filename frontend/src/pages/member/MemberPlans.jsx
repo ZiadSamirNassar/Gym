@@ -1,32 +1,49 @@
-import { Col, Container, Row, Alert } from "react-bootstrap"
-import TrainingPlan from "../../components/TrainingPlan"
-import { useState, useEffect } from "react"
+import { Col, Container, Row, Alert } from "react-bootstrap";
+import TrainingPlan from "../../components/TrainingPlan";
+import { useState, useEffect } from "react";
 
 const MemberPlans = () => {
-  const [ trainingPlans, setTrainingPlans ] = useState([])
-  const [ error, setError ] = useState(null)
+  localStorage.setItem(
+    "token",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiem96IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoibWVtYmVyIiwiZXhwIjoxNzQ3MjE2MjgzLCJpc3MiOiJNeUd5bUFwcCIsImF1ZCI6Ik15R3ltQXBwQXVkaWVuY2UifQ.zJ0_npvuuMm_l4Q2Cw9DvDuCq4PHpFPAL6Ou1zoRLrY"
+  );
 
-  const [ loading, setLoading ] = useState(true)
+  localStorage.setItem(
+    "type",
+    "member"
+  );
 
+  const [trainingPlans, setTrainingPlans] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTrainingPlans = async () => {
       try {
-        const response = await fetch('https://localhost:7052/TrainingPlan')
+        const token = localStorage.getItem("token");
+        const response = await fetch("https://localhost:7052/TrainingPlan", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         if (!response.ok) {
-          throw new Error('Failed to fetch training plans')
+          throw new Error("Failed to fetch training plans");
         }
-        const data = await response.json()
-        setTrainingPlans(data)
+
+        const data = await response.json();
+        setTrainingPlans(data.data);
       } catch (error) {
-        setError(error.message)
+        setError(error.message);
       }
 
-      setLoading(false)
-    }
+      setLoading(false);
+    };
 
-    fetchTrainingPlans()
-  })
+    fetchTrainingPlans();
+  }, []); // Added dependency array to avoid infinite re-renders
 
   return (
     <Container fluid>
@@ -40,22 +57,20 @@ const MemberPlans = () => {
           <Col xs={12} className="text-center">
             <Alert variant="info">Loading...</Alert>
           </Col>
+        ) : trainingPlans.length === 0 ? (
+          <Col xs={12} className="text-center">
+            <Alert variant="info">No training plans available</Alert>
+          </Col>
         ) : (
-          trainingPlans.length === 0 ? (
-            <Col xs={12} className="text-center">
-              <Alert variant="info">No training plans available</Alert>
+          trainingPlans.map((plan) => (
+            <Col xs={12} md={12} lg={12} key={plan.id}>
+              <TrainingPlan plan={plan} />
             </Col>
-          ) : (
-            trainingPlans.map((plan) => (
-              <Col xs={12} md={6} lg={4} key={plan.id}>
-                <TrainingPlan plan={plan} />
-              </Col>
-            ))
-          )
+          ))
         )}
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default MemberPlans
+export default MemberPlans;

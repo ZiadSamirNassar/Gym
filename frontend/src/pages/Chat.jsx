@@ -3,41 +3,63 @@ import { Form, Button, Container, Dropdown } from "react-bootstrap";
 import { Send } from "react-bootstrap-icons";
 
 const Chat = () => {
-    const [trainers, setTrainers] = useState([]);
-    const [selectedTrainer, setSelectedTrainer] = useState(null);
+    const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [socket, setSocket] = useState(null);
-    const [error, setError ] = useState(null)
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("/Trainer")
+        const userType = localStorage.getItem("type");
+        const token = localStorage.getItem("token");
+        const endpoint = userType === "member" 
+            ? "https://localhost:7052/Trainer" 
+            : "https://localhost:7052/Members";
+
+        fetch(endpoint, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Failed to fetch trainers");
+                    throw new Error("Failed to fetch users");
                 }
                 return response.json();
             })
-            .then(data => setTrainers(data))
+            .then(data => setUsers(data.data))
             .catch(error => setError(error.message));
     }, []);
 
     useEffect(() => {
-        if (selectedTrainer) {
-            fetch(`/Messages/${selectedTrainer.id}`)
+        if (selectedUser) {
+            const token = localStorage.getItem("token");
+            const userType = localStorage.getItem("type");
+            const userId = userType === "trainer" ? selectedUser.memberId : selectedUser.trainerId;
+
+            fetch(`https://localhost:7052/Message/${userId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Failed to fetch messages");
                     }
                     return response.json();
                 })
-                .then(data => setMessages(data))
+                .then(data => setMessages(data.data))
                 .catch(error => setError(error.message));
         }
-    }, [selectedTrainer]);
+    }, [selectedUser]);
 
     useEffect(() => {
-        const ws = new WebSocket("ws://your-websocket-server-url");
+        const ws = new WebSocket("wss://localhost:5074/ws");
         setSocket(ws);
 
         ws.onmessage = (event) => {
@@ -48,15 +70,15 @@ const Chat = () => {
         return () => ws.close();
     }, []);
 
-    const handleSelectTrainer = (trainer) => {
-        setSelectedTrainer(trainer);
+    const handleSelectUser = (user) => {
+        setSelectedUser(user);
     };
 
     const handleSendMessage = () => {
-        if (newMessage.trim() && selectedTrainer) {
+        if (newMessage.trim() && selectedUser) {
             const message = {
                 content: newMessage,
-                trainerId: selectedTrainer.id,
+                userId: selectedUser.id,
                 timestamp: new Date().toISOString(),
             };
 
@@ -73,12 +95,12 @@ const Chat = () => {
                 <h4 className="fw-semibold">Chat</h4>
                 <Dropdown>
                     <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                        {selectedTrainer ? selectedTrainer.name : "Select Trainer"}
+                        {selectedUser ? selectedUser.name : "Select User"}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        {trainers.map(trainer => (
-                            <Dropdown.Item key={trainer.id} onClick={() => handleSelectTrainer(trainer)}>
-                                {trainer.name}
+                        {users.map(user => (
+                            <Dropdown.Item key={user.id} onClick={() => handleSelectUser(user)}>
+                                {user.name}
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>
@@ -94,9 +116,9 @@ const Chat = () => {
                         className={`bg-light px-3 pt-3 pb-4 rounded-3 mb-3 position-relative ${msg.self ? "align-self-end" : "align-self-start"}`}
                         style={{ maxWidth: "75%" }}
                     >
-                        <div className="fw-bold" style={{ fontSize: "17px" }}>{msg.content}</div>
+                        <div className="fw-bold" style={{ fontSize: "17px" }}>{msg.message}</div>
                         <span className="fw-semibold text-secondary position-absolute bottom-0 end-0 pb-1 pe-3" style={{ fontSize: "13px" }}>
-                            {new Date(msg.timestamp).toLocaleTimeString()}
+                            {"10:00 am"}
                         </span>
                     </div>
                 ))}
