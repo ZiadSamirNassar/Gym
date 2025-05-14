@@ -37,10 +37,8 @@ const Chat = () => {
     useEffect(() => {
         if (selectedUser) {
             const token = localStorage.getItem("token");
-            const userType = localStorage.getItem("type");
-            const userId = userType === "trainer" ? selectedUser.memberId : selectedUser.trainerId;
 
-            fetch(`https://localhost:7052/Message/${userId}`, {
+            fetch(`https://localhost:7052/Message/${selectedUser.id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -71,7 +69,11 @@ const Chat = () => {
     }, []);
 
     const handleSelectUser = (user) => {
-        setSelectedUser(user);
+        if (localStorage.getItem("type") === "trainer") {
+            setSelectedUser({ ...user, id: user.memberId });
+        } else {
+            setSelectedUser({ ...user, id: user.trainerId });
+        }
     };
 
     const handleSendMessage = () => {
@@ -110,18 +112,20 @@ const Chat = () => {
             {error && <div className="alert alert-danger">{error}</div>}
 
             <div className="d-flex flex-column overflow-auto">
-                {messages.map((msg, index) => (
-                    <div
-                        key={index}
-                        className={`bg-light px-3 pt-3 pb-4 rounded-3 mb-3 position-relative ${msg.self ? "align-self-end" : "align-self-start"}`}
-                        style={{ maxWidth: "75%" }}
-                    >
-                        <div className="fw-bold" style={{ fontSize: "17px" }}>{msg.message}</div>
-                        <span className="fw-semibold text-secondary position-absolute bottom-0 end-0 pb-1 pe-3" style={{ fontSize: "13px" }}>
-                            {"10:00 am"}
-                        </span>
-                    </div>
-                ))}
+
+                {messages.map((msg, index) => {
+                    if (msg.receiverId === selectedUser.id) {
+                        return <div className="bg-light px-3 pt-3 pb-4 rounded-3 mb-3 position-relative align-self-end" style={{maxWidth: "75%", minWidth: "15%"}}>
+                            <div className="fw-bold " style={{fontSize: "17px"}}>{ msg.content }</div>
+                            <span className="fw-semibold text-secondary position-absolute bottom-0 end-0 pb-1 pe-3" style={{fontSize: "13px"}}>10:00am</span>
+                        </div>
+                    } else { 
+                        return <div className="bg-light px-3 pt-3 pb-4 rounded-3 mb-3 position-relative align-self-start" style={{maxWidth: "75%", minWidth: "15%"}}>
+                            <div className="fw-bold " style={{fontSize: "17px"}}>{ msg.content }</div>
+                            <span className="fw-semibold text-secondary position-absolute bottom-0 end-0 pb-1 pe-3" style={{fontSize: "13px"}}>10:00am</span>
+                        </div>
+                    }
+                })}
             </div>
             <div className="d-flex gap-3 align-items-center justify-content-between border-top p-3" style={{ height: "80px" }}>
                 <Form.Control

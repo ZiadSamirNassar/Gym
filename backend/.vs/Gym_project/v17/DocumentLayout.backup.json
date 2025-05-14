@@ -68,9 +68,9 @@
               "Title": "MessageController .cs",
               "DocumentMoniker": "D:\\code\\Gym\\backend\\Controllers\\MessageController .cs",
               "RelativeDocumentMoniker": "Controllers\\MessageController .cs",
-              "ToolTip": "D:\\code\\Gym\\backend\\Controllers\\MessageController .cs*",
-              "RelativeToolTip": "Controllers\\MessageController .cs*",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAArAAAAAAAAAA==",
+              "ToolTip": "D:\\code\\Gym\\backend\\Controllers\\MessageController .cs",
+              "RelativeToolTip": "Controllers\\MessageController .cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAswBcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-14T00:31:05.222Z",
               "EditorCaption": ""
@@ -85,8 +85,7 @@
               "RelativeToolTip": "Controllers\\MembersController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAA7wBQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T23:43:08.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T23:43:08.878Z"
             },
             {
               "$type": "Document",
@@ -110,8 +109,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-13T21:31:50.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T21:31:50.012Z"
             },
             {
               "$type": "Document",
@@ -123,8 +121,7 @@
               "RelativeToolTip": "WebSocket\\WebSocketHandler.cs",
               "ViewState": "AgIAALcAAAAAAAAAAAAowLwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T00:44:29.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T00:44:29.782Z"
             },
             {
               "$type": "Document",
@@ -136,8 +133,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAApwG4AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T00:17:51.935Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T00:17:51.935Z"
             }
           ]
         }
