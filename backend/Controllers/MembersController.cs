@@ -18,7 +18,7 @@ namespace Gym_project.Controllers
 
         // GET /Members
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, trainer")]
 
         public async Task<IActionResult> GetAllMembers()
         {
