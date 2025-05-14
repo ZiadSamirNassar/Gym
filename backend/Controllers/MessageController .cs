@@ -21,7 +21,7 @@ namespace Gym_project.Controllers
 
         // GET /messages/{userId}
         [HttpGet("{userId}")]
-        [Authorize]
+        [Authorize(Roles = "member, trainer")]
         public async Task<IActionResult> GetMessagesWithUser(int userId)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
