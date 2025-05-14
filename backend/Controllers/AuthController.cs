@@ -36,12 +36,31 @@ namespace Gym_project.Controllers
 
             var token = GenerateJwt(user);
 
-            return Ok(new { data = new LoginResponseDto
+            // Prepare response data
+            var loginResponse = new LoginResponseDto
             {
                 Username = user.Username,
                 Role = user.Type,
                 Token = token
-            } });
+            };
+
+            if (user.Type.Equals("member", StringComparison.OrdinalIgnoreCase))
+            {
+                var member = _context.Members.FirstOrDefault(m => m.MemberId == user.Id);
+
+                if (member != null)
+                {
+                    var membershipPlan = _context.MembershipPlans.FirstOrDefault(mp => mp.PlanId == member.MembershipPlanId);
+
+                    if (membershipPlan != null)
+                    {
+                        loginResponse.MembershipPlanName = membershipPlan.Name; // Assuming MembershipPlan has a Name property
+                        loginResponse.PersonalSessions = membershipPlan.PersonalSessions; // Assuming PersonalSessions is a relevant property in MembershipPlan
+                    }
+                }
+            }
+
+            return Ok(new { data = loginResponse });
         }
 
 

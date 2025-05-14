@@ -259,6 +259,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gym_project.Controllers.ProgressReportController",
+    "Method": "UpdateProgressReport",
+    "RelativePath": "ProgressReport/{reportId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Gym_project.DTOs.UpdateProgressReportDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym_project.Controllers.SessionController",
     "Method": "GetSessions",
     "RelativePath": "Session",
@@ -319,6 +340,26 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "GetPrivateSessionsForMember",
+    "RelativePath": "Session/sessions/member/private",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.SessionController",
+    "Method": "GetSessionsForTrainer",
+    "RelativePath": "Session/sessions/trainer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

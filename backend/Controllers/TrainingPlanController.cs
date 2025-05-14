@@ -20,19 +20,33 @@ namespace Gym_project.Controllers
             _context = context;
         }
 
-        // GET /trainingplans
+
+
+        // GET /trainingplans [Member only]
         [HttpGet]
+        [Authorize(Roles = "member")]
         public async Task<IActionResult> GetTrainingPlans()
         {
+            // Retrieve the member ID from the claims
+            var userIdClaim = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var memberId))
+            {
+                return Unauthorized("User is not authorized.");
+            }
+
             var plans = await _context.TrainingPlans
+                .Where(p => p.MemberId == memberId)
+                .Include(p => p.Trainer)               // like join 
                 .Select(p => new TrainingPlanDto
                 {
                     PlanId = p.PlanId,
                     MemberId = p.MemberId,
                     TrainerId = p.TrainerId,
-                    ExerciseName = p.ExerciseName,
+                    planName = p.PlanName,
                     Duration = p.Duration,
-                    Level = p.Level
+                    Level = p.Level,
+                    Details = p.Details,
+                    trainerName = p.Trainer.Name
                 })
                 .ToListAsync();
 
@@ -56,11 +70,13 @@ namespace Gym_project.Controllers
 
             var plan = new TrainingPlan
             {
+                
                 MemberId = dto.MemberId,
                 TrainerId = trainer.TrainerId,
-                ExerciseName = dto.ExerciseName,
+                PlanName = dto.planName,
                 Duration = dto.Duration,
-                Level = dto.Level
+                Level = dto.Level,
+                Details = dto.Details
             };
 
             _context.TrainingPlans.Add(plan);
@@ -71,9 +87,10 @@ namespace Gym_project.Controllers
                 PlanId = plan.PlanId,
                 MemberId = plan.MemberId,
                 TrainerId = plan.TrainerId,
-                ExerciseName = plan.ExerciseName,
+                planName = plan.PlanName,
                 Duration = plan.Duration,
-                Level = plan.Level
+                Level = plan.Level,
+                Details = plan.Details,
             };
 
             return CreatedAtAction(nameof(GetTrainingPlans), new { id = plan.PlanId }, result);
