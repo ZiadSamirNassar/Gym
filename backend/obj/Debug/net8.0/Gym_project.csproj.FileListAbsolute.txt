@@ -441,7 +441,6 @@ D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\G
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\Gym_project.genruntimeconfig.cache
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\ref\Gym_project.dll
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\code\Gym\backend\bin\Debug\net8.0\appsettings.Development.json
 D:\code\Gym\backend\bin\Debug\net8.0\Gym_project.staticwebassets.endpoints.json
@@ -593,3 +592,4 @@ D:\code\Gym\backend\obj\Debug\net8.0\refint\Gym_project.dll
 D:\code\Gym\backend\obj\Debug\net8.0\Gym_project.pdb
 D:\code\Gym\backend\obj\Debug\net8.0\Gym_project.genruntimeconfig.cache
 D:\code\Gym\backend\obj\Debug\net8.0\ref\Gym_project.dll
+D:\Collage\Terms_Projects_(FCAIH)\Level3\term2\IA\Gym\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

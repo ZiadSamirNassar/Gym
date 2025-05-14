@@ -399,6 +399,48 @@
         }
       }
     },
+    "/ProgressReport/{reportId}": {
+      "patch": {
+        "tags": [
+          "ProgressReport"
+        ],
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProgressReportDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProgressReportDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProgressReportDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/ProgressReport": {
       "post": {
         "tags": [
@@ -464,6 +506,30 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Session/sessions/member/private": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Session/sessions/trainer": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -749,6 +815,15 @@
           "duration": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "time": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -783,7 +858,7 @@
             "format": "int32",
             "nullable": true
           },
-          "exerciseName": {
+          "planName": {
             "type": "string",
             "nullable": true
           },
@@ -792,6 +867,10 @@
             "format": "int32"
           },
           "level": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
             "type": "string",
             "nullable": true
           }
@@ -904,6 +983,26 @@
         },
         "additionalProperties": false
       },
+      "UpdateProgressReportDto": {
+        "type": "object",
+        "properties": {
+          "weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bodyFatPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "performanceNotes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateSessionDto": {
         "type": "object",
         "properties": {
@@ -919,6 +1018,15 @@
           "duration": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "time": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\code\\Gym\\backend\\Gym_project.csproj": {}
+    "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project.csproj": {}
   },
   "projects": {
-    "D:\\code\\Gym\\backend\\Gym_project.csproj": {
+    "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\code\\Gym\\backend\\Gym_project.csproj",
+        "projectUniqueName": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project.csproj",
         "projectName": "Gym_project",
-        "projectPath": "D:\\code\\Gym\\backend\\Gym_project.csproj",
-        "packagesPath": "C:\\Users\\ziade\\.nuget\\packages\\",
-        "outputPath": "D:\\code\\Gym\\backend\\obj\\",
+        "projectPath": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Gym_project.csproj",
+        "packagesPath": "C:\\Users\\OVER CLOCK\\.nuget\\packages\\",
+        "outputPath": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ziade\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\OVER CLOCK\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -98,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
