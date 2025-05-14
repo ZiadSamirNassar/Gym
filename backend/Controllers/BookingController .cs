@@ -52,12 +52,13 @@ namespace Gym_project.Controllers
             {
                 Type = "private",
                 Date = dto.Date,
-                Duration = dto.Duration
-                
-                // No TrainerId for private sessions
+                Duration = dto.Duration,
+                Time = dto.Time,
+                Name = dto.Name,
+                TrainerId = dto.Trainer_id,
             };
 
-            _context.Sessions.Add(session);
+                _context.Sessions.Add(session);
             await _context.SaveChangesAsync();
 
             var booking = new Booking

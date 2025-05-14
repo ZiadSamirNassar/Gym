@@ -20,11 +20,12 @@ namespace Gym_project.Controllers
             _context = context;
         }
 
-        // GET /sessions
+        // GET /sessions   ( group sessions only)
         [HttpGet]
         public async Task<IActionResult> GetSessions()
         {
-            var sessions = await _context.Sessions
+            var groupSessions = await _context.Sessions
+                .Where(s => s.Type.ToLower() == "group")
                 .Select(s => new SessionDto
                 {
                     SessionId = s.SessionId,
@@ -32,13 +33,12 @@ namespace Gym_project.Controllers
                     Type = s.Type,
                     Date = s.Date,
                     Duration = s.Duration,
-                    Name= s.Name,
+                    Name = s.Name,
                     Time = s.Time
-
                 })
                 .ToListAsync();
 
-            return Ok(new { data = sessions });
+            return Ok(new { data = groupSessions });
         }
 
 
@@ -168,7 +168,7 @@ namespace Gym_project.Controllers
 
         // DELETE /sessions/{id} [Admin only]
         [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, member")]
         public async Task<IActionResult> DeleteSession(int id)
         {
             var session = await _context.Sessions.FindAsync(id);

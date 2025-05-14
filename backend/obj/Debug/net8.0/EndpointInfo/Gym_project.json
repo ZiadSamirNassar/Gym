@@ -764,6 +764,18 @@
           "duration": {
             "type": "integer",
             "format": "int32"
+          },
+          "trainer_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "time": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

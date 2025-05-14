@@ -9,15 +9,15 @@ const TrainingPlan = ({ plan }) => {
         <div className=" d-flex flex-row justify-content-between align-items-center ">
           <div>
               <div className="d-flex gap-4">
-                <Card.Title className="fs-5 m-0">Your 3rd workout</Card.Title><br/>
+                <Card.Title className="fs-5 m-0">{ plan.planName }</Card.Title><br/>
                 <Level variant={ plan.level }/>
               </div>
-              <Card.Subtitle className="fs-6 fw-semibold text-secondary">By Ahmed Abdelaleem</Card.Subtitle>
+              <Card.Subtitle className="fs-6 fw-semibold text-secondary">By { plan.trainerName }</Card.Subtitle>
           </div>
           <div fw-semibold fs-6 text-secondary><Alarm color="gray"/> { plan.duration } h</div>
         </div>
         <p className="fw-bold text-secondary fs-6">
-          { plan.exerciseName }
+          { plan.details }
         </p>
       </div>
     </Container>

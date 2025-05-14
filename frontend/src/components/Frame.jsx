@@ -4,6 +4,7 @@ import { House, ClipboardCheck, ChatDots, People } from 'react-bootstrap-icons';
 import { Link } from 'react-router';
 
 const Frame = ({ role }) => {
+  const membershipPlan = localStorage.getItem("membershipPlanName");
   return (
     <>
       <Navbar bg="white" expand="lg" className="z-3 position-fixed shadow-sm py-2 px-4 w-100" style={{ borderBottom: '1px solid #eee' }}>
@@ -12,8 +13,7 @@ const Frame = ({ role }) => {
 
           { role === "member" &&
             <div className="d-flex align-items-center gap-4">
-              <div className="text-secondary">2/10 sessions</div>
-              <PlanLabel variant="gold"/>
+              <PlanLabel variant={membershipPlan}/>
             </div>
           }
         </Container>
