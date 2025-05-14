@@ -11,11 +11,13 @@ public partial class TrainingPlan
 
     public int? TrainerId { get; set; }
 
-    public string ExerciseName { get; set; } = null!;
+    public string PlanName { get; set; } = null!;
 
     public int Duration { get; set; }
 
     public string Level { get; set; } = null!;
+
+    public string? Details { get; set; }
 
     public virtual Member? Member { get; set; }
 

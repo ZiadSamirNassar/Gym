@@ -38,7 +38,7 @@ public partial class GymDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=WINLP;Database=ia_project;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=OMAR\\SQLEXPRESS;Database=gym_db;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -141,6 +141,9 @@ public partial class GymDbContext : DbContext
                 .HasColumnName("message");
             entity.Property(e => e.ReceiverId).HasColumnName("receiver_id");
             entity.Property(e => e.SenderId).HasColumnName("sender_id");
+            entity.Property(e => e.Timestamp)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnName("timestamp");
 
             entity.HasOne(d => d.Receiver).WithMany(p => p.MessageReceivers)
                 .HasForeignKey(d => d.ReceiverId)
@@ -192,6 +195,13 @@ public partial class GymDbContext : DbContext
             entity.Property(e => e.SessionId).HasColumnName("session_id");
             entity.Property(e => e.Date).HasColumnName("date");
             entity.Property(e => e.Duration).HasColumnName("duration");
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("name");
+            entity.Property(e => e.Time)
+                .HasDefaultValue(0)
+                .HasColumnName("time");
             entity.Property(e => e.TrainerId).HasColumnName("trainer_id");
             entity.Property(e => e.Type)
                 .HasMaxLength(255)
@@ -232,16 +242,19 @@ public partial class GymDbContext : DbContext
             entity.ToTable("Training_Plan");
 
             entity.Property(e => e.PlanId).HasColumnName("plan_id");
-            entity.Property(e => e.Duration).HasColumnName("duration");
-            entity.Property(e => e.ExerciseName)
+            entity.Property(e => e.Details)
                 .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("exercise_name");
+                .HasColumnName("details");
+            entity.Property(e => e.Duration).HasColumnName("duration");
             entity.Property(e => e.Level)
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("level");
             entity.Property(e => e.MemberId).HasColumnName("member_id");
+            entity.Property(e => e.PlanName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("planName");
             entity.Property(e => e.TrainerId).HasColumnName("trainer_id");
 
             entity.HasOne(d => d.Member).WithMany(p => p.TrainingPlans)

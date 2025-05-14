@@ -34,7 +34,8 @@ namespace Gym_project.Controllers
                     MessageId = m.MessageId,
                     SenderId = m.SenderId,
                     ReceiverId = m.ReceiverId,
-                    Content = m.Message1
+                    Content = m.Message1,
+                    Timestamp = m.Timestamp
                 })
                 .ToListAsync();
 

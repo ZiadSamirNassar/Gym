@@ -6,6 +6,8 @@
         public string Type { get; set; } = null!;
         public DateOnly? Date { get; set; }
         public int Duration { get; set; }
-       // public int? MemberId { get; set; }  // To split between group (null) and personal sessions
+        public string Name { get; set; }
+        public int? Time { get; set; }
+        // public int? MemberId { get; set; }  // To split between group (null) and personal sessions
     }
 }

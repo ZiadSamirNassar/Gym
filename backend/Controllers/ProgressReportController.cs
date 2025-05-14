@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Gym_project.DTO;
 using Gym_project.Models;
-
 namespace Gym_project.Controllers
 {
     [ApiController]
@@ -22,34 +21,29 @@ namespace Gym_project.Controllers
 
         // GET /progressreport/{memberId}
         [HttpGet("{memberId}")]
-        [Authorize] // Only authenticated users can access
+        [Authorize(Roles ="trainer,member")] // Only trainer and member
         public async Task<IActionResult> GetProgressReportsForMember(int memberId)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var currentUserRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
-            if (currentUserRole == "member")
+            bool canAccess = false;
+
+            if (currentUserRole == "member" && currentUserId == memberId)
             {
-                // Get THIS member id
-                var member = await _context.Members
-                    .FirstOrDefaultAsync(m => m.MemberNavigation.Id == currentUserId);
-                if (member == null || member.MemberId != memberId)
-                    return Forbid(); // Not your data!
+                canAccess = true; // Member can access their own reports
             }
             else if (currentUserRole == "trainer")
             {
-                // Get list of this trainer's assigned member ids (e.g. by training plans)
-                var isAssigned = await _context.TrainingPlans
-                    .AnyAsync(tp => tp.TrainerId == currentUserId );
-
-                if (!isAssigned)
-                    return Forbid(); 
+                // Verify if trainer is assigned to this member
+                canAccess = await _context.TrainingPlans.AnyAsync(tp => tp.TrainerId == currentUserId && tp.MemberId == memberId);
             }
 
+            if (!canAccess)
+                return Forbid();
 
             var reports = await _context.ProgressReports
                 .Where(r => r.MemberId == memberId)
-                .Include(r => r.Trainer)
                 .Select(r => new ProgressReportDto
                 {
                     ReportId = r.ReportId,
@@ -66,6 +60,43 @@ namespace Gym_project.Controllers
 
             return Ok(new { data = reports });
         }
+
+        // PATCH /progressreport/{reportId} [Member or Trainer update]
+        [HttpPatch("{reportId}")]
+        [Authorize (Roles ="trainer,member")] 
+        public async Task<IActionResult> UpdateProgressReport(int reportId, [FromBody] UpdateProgressReportDto dto)
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var currentUserRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            var report = await _context.ProgressReports.FirstOrDefaultAsync(r => r.ReportId == reportId);
+            if (report == null)
+                return NotFound("Progress report not found.");
+
+            if (currentUserRole == "member" && report.MemberId == currentUserId)
+            {
+                // Member can update their weight and body fat percentage
+                report.Weight = dto.Weight ?? report.Weight;
+                report.BodyFatPercentage = dto.BodyFatPercentage ?? report.BodyFatPercentage;
+            }
+            else if (currentUserRole == "trainer")
+            {
+                // Trainer can update performance notes if assigned to member
+                var isAssigned = await _context.TrainingPlans.AnyAsync(tp => tp.TrainerId == currentUserId && tp.MemberId == report.MemberId);
+                if (!isAssigned)
+                    return Forbid("You cannot update the report for this member.");
+
+                report.PerformanceNotes = dto.PerformanceNotes ?? report.PerformanceNotes;
+            }
+            else
+            {
+                return Forbid();
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok("Progress report updated successfully.");
+        }
+
 
         [HttpPost]
         [Authorize(Roles = "trainer")]

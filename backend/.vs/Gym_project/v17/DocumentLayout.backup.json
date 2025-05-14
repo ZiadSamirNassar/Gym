@@ -1,30 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\code\\Gym\\backend\\",
+  "WorkspaceRootPath": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\code\\gym\\backend\\websocket\\websockethandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:websocket\\websockethandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\code\\gym\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\dto\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:dto\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\code\\gym\\backend\\controllers\\messagecontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:controllers\\messagecontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\dto\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:dto\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\code\\gym\\backend\\controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\code\\gym\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\code\\gym\\backend\\data\\gymdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:data\\gymdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|d:\\collage\\terms_projects_(fcaih)\\level3\\term2\\ia\\gym\\backend\\controllers\\bookingcontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACFA34FD-60B6-4989-98A7-CAB5BF543CA9}|Gym_project.csproj|solutionrelative:controllers\\bookingcontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,8 +25,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 207,
-          "SelectedChildIndex": -1,
+          "DockedHeight": 103,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,89 +43,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 193,
-          "SelectedChildIndex": 5,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MessageController .cs",
-              "DocumentMoniker": "D:\\code\\Gym\\backend\\Controllers\\MessageController .cs",
-              "RelativeDocumentMoniker": "Controllers\\MessageController .cs",
-              "ToolTip": "D:\\code\\Gym\\backend\\Controllers\\MessageController .cs",
-              "RelativeToolTip": "Controllers\\MessageController .cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T00:31:05.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MembersController.cs",
-              "DocumentMoniker": "D:\\code\\Gym\\backend\\Controllers\\MembersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MembersController.cs",
-              "ToolTip": "D:\\code\\Gym\\backend\\Controllers\\MembersController.cs",
-              "RelativeToolTip": "Controllers\\MembersController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA7wBQAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T23:43:08.878Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GymDbContext.cs",
-              "DocumentMoniker": "D:\\code\\Gym\\backend\\Data\\GymDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\GymDbContext.cs",
-              "ToolTip": "D:\\code\\Gym\\backend\\Data\\GymDbContext.cs",
-              "RelativeToolTip": "Data\\GymDbContext.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAA4wCkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T21:32:21.972Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\code\\Gym\\backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\code\\Gym\\backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-13T21:31:50.012Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WebSocketHandler.cs",
-              "DocumentMoniker": "D:\\code\\Gym\\backend\\WebSocket\\WebSocketHandler.cs",
-              "RelativeDocumentMoniker": "WebSocket\\WebSocketHandler.cs",
-              "ToolTip": "D:\\code\\Gym\\backend\\WebSocket\\WebSocketHandler.cs",
-              "RelativeToolTip": "WebSocket\\WebSocketHandler.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAWwC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T00:44:29.782Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\code\\Gym\\backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\code\\Gym\\backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAApwG4AAAAfAAAAAAAAAA==",
+              "Title": "LoginResponseDto.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\LoginResponseDto.cs",
+              "RelativeDocumentMoniker": "DTO\\LoginResponseDto.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\LoginResponseDto.cs",
+              "RelativeToolTip": "DTO\\LoginResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T00:17:51.935Z"
+              "WhenOpened": "2025-05-14T17:21:29.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookingController .cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Controllers\\BookingController .cs",
+              "RelativeDocumentMoniker": "Controllers\\BookingController .cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Controllers\\BookingController .cs",
+              "RelativeToolTip": "Controllers\\BookingController .cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T17:10:10.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginRequestDto.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\LoginRequestDto.cs",
+              "RelativeDocumentMoniker": "DTO\\LoginRequestDto.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\DTO\\LoginRequestDto.cs",
+              "RelativeToolTip": "DTO\\LoginRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T17:04:49.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Collage\\Terms_Projects_(FCAIH)\\Level3\\term2\\IA\\Gym\\backend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAgwDAAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T16:31:46.619Z",
+              "EditorCaption": ""
             }
           ]
         }
