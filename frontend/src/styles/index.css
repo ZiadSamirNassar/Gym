@@ -63,6 +63,16 @@ input, button, select, optgroup, textarea {
     box-shadow: 0px 0px 2px rgb(158, 158, 158);
 }
 
+.other-plan { 
+    background-color: #3d3d3d;
+    color: white;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px rgb(158, 158, 158);
+}
+
 .con { 
     padding: 80px 50px 0px 350px;
     margin: 0px;

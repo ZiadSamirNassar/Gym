@@ -57,7 +57,14 @@ const Chat = () => {
     }, [selectedUser]);
 
     useEffect(() => {
-        const ws = new WebSocket("wss://localhost:5074/ws");
+        let ws = null;
+        const token = localStorage.getItem("token");
+
+        try { 
+            ws = new WebSocket("wss://localhost:7052/ws?token=" + token);
+        } catch (error) {
+            console.log("WebSocket error:", error);
+        }
         setSocket(ws);
 
         ws.onmessage = (event) => {
@@ -111,7 +118,7 @@ const Chat = () => {
 
             {error && <div className="alert alert-danger">{error}</div>}
 
-            <div className="d-flex flex-column overflow-auto">
+            <div className="d-flex flex-column overflow-auto justify-content-end" style={{ height: "calc(100% - 80px)" }}>
 
                 {messages.map((msg, index) => {
                     if (msg.receiverId === selectedUser.id) {

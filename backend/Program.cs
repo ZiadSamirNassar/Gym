@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using System.Net.WebSockets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.HttpsPolicy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<GymDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // 2. Add Controllers
+builder.Services.AddSingleton<IUserConnectionManager, UserConnectionManager>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 

@@ -1,37 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MembershipTable from "../../components/admin/MembershipTable";
 import UsersTable from "../../components/admin/UsersTable";
 import TranersTable from "../../components/admin/TranersTable";
-import AdminTable from "../../components/admin/AdminTable"
-import SubscriptionTable from "../../components/admin/SubscriptionTable";
-import GroupTrainingSession from "../../components/admin/GroupTrainingSession";
+import { useNavigate } from "react-router-dom";
+import GroupSessionTable from "../../components/admin/GroupSessionTable";
 
-const DashBoard = ( ) => {
+const DashBoard = () => {
+  const [authData, setAuthData] = useState(null);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedAuthData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
+    }
+    setAuthData(storedAuthData);
+  }, []);
 
-    return( 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("type");
+    localStorage.removeItem("membershipPlanName");
+    navigate("/login");
+  };
 
-        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+  if (!authData) {
+    return <div>Loading...</div>;
+  }
 
-        <UsersTable/>
-
-        <TranersTable/>
-       
-        <AdminTable />
-
-        <MembershipTable/>
-
-        <SubscriptionTable />
-
-        <GroupTrainingSession />
-
-
-
-        
-        </div>
-
-    );
-
+  return (
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+      <UsersTable token={authData.token} />
+      <TranersTable token={authData.token} />
+      <MembershipTable token={authData.token} />
+      <GroupSessionTable token={authData.token} />
+      <button
+        style={{
+          marginTop: "32px",
+          padding: "10px 32px",
+          background: "#222",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          fontSize: "18px",
+          cursor: "pointer"
+        }}
+        onClick={handleLogout}
+      >
+        Log out
+      </button>
+    </div>
+  );
 }
 
 export default DashBoard;

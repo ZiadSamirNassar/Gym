@@ -17,10 +17,80 @@ const TrainerClients = () => {
     details: "",
   });
 
+  // Performance report modal state
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [performanceNotes, setPerformanceNotes] = useState("");
+  const [performanceHistory, setPerformanceHistory] = useState("No previous notes."); // Replace with real data if available
+  const [currentReportId, setCurrentReportId] = useState(null);
+
   const handleClose = () => setShowModal(false);
   const handleShow = (client) => {
     setSelectedClient(client);
     setShowModal(true);
+  };
+
+  const handleReportClose = () => setShowReportModal(false);
+  const handleReportShow = async (client) => {
+    setSelectedClient(client);
+    console.log(client)
+    try {
+      const token = localStorage.getItem("token");
+      // 1. Try to get the progress report for this client
+      const response = await fetch("https://localhost:7052/ProgressReport/" + client.memberId, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch progress report");
+      }
+
+      const data = await response.json();
+
+      // 2. If no report exists, create one with empty/default values
+      if (Array.isArray(data.data) && data.data.length === 0) {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const postResponse = await fetch("https://localhost:7052/ProgressReport", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            memberId: client.memberId,
+            date: dateStr,
+            weight: 0,
+            bodyFatPercentage: 0,
+            performanceNotes: "no previous notes.",
+          }),
+        });
+
+        if (!postResponse.ok) {
+          throw new Error("Failed to create progress report");
+        }
+
+        setPerformanceHistory("No previous notes.");
+        setCurrentReportId(null);
+      } else if (Array.isArray(data.data) && data.data.length > 0) {
+        // 3. If report exists, show the latest one
+        const report = data.data[0];
+        setPerformanceHistory(report.performanceNotes || "No previous notes.");
+        setCurrentReportId(report.reportId); // Save the reportId for PATCH
+      }
+    } catch (error) {
+      setPerformanceHistory("No previous notes.");
+      setCurrentReportId(null);
+    }
+
+    setShowReportModal(true);
   };
 
   const handleChange = (e) => {
@@ -42,17 +112,18 @@ const TrainerClients = () => {
         },
         body: JSON.stringify({
           memberId: selectedClient.memberId,
-          exerciseName: plan.details,
+          planName: plan.name,
+          details: plan.details,
           duration: plan.duration,
           level: plan.level,
         }),
       });
 
       if (!response.ok) {
+        console.log("Response:", response);
         throw new Error("Failed to save the training plan");
       }
 
-      // Reset form and close modal
       setPlan({
         name: "",
         duration: "",
@@ -62,6 +133,33 @@ const TrainerClients = () => {
       handleClose();
     } catch (error) {
       console.error("Error saving training plan:", error.message);
+      setError(error.message);
+    }
+  };
+
+  const handleUpdatePerformance = async () => {
+    if (!currentReportId) return;
+    const token = localStorage.getItem("token");
+    try {
+      const response = await fetch(`https://localhost:7052/ProgressReport/${currentReportId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          performanceNotes: performanceNotes,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update performance notes");
+      }
+
+      // Instantly update the notes on the right side
+      setPerformanceHistory(performanceNotes);
+      setPerformanceNotes("");
+    } catch (error) {
       setError(error.message);
     }
   };
@@ -115,7 +213,11 @@ const TrainerClients = () => {
           ) : (
             clients.map((client) => (
               <Col xs={6} key={client.id}>
-                <ClientCard client={client} onMakePlan={() => handleShow(client)} />
+                <ClientCard
+                  client={client}
+                  onMakePlan={() => handleShow(client)}
+                  onUpdateReport={() => handleReportShow(client)}
+                />
               </Col>
             ))
           )}
@@ -180,6 +282,65 @@ const TrainerClients = () => {
           </Button>
           <Button variant="dark" onClick={handleSubmit}>
             Save Plan
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for updating performance report */}
+      <Modal show={showReportModal} onHide={handleReportClose} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Update Performance Report for {selectedClient?.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ display: "flex", gap: "24px", minHeight: "250px" }}>
+            {/* Left side: Form */}
+            <div style={{ flex: 1 }}>
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Performance Notes</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder="performance notes"
+                    value={performanceNotes}
+                    onChange={e => setPerformanceNotes(e.target.value)}
+                    style={{ height: "180px", resize: "none" }} // Increased fixed height
+                    rows={7}
+                  />
+                </Form.Group>
+                <Button variant="dark" onClick={handleUpdatePerformance}>
+                  Update
+                </Button>
+              </Form>
+            </div>
+            {/* Right side: History */}
+            <div
+              style={{
+                flex: 1,
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                padding: "16px",
+                overflowY: "auto",
+                height: "100%",
+                minHeight: "200px",
+                maxHeight: "350px",
+                background: "#f8f9fa"
+              }}
+            >
+              <p style={{ margin: 0, fontWeight: "bold" }}>
+                Weight: {selectedClient?.weight ?? "N/A"}
+              </p>
+              <p style={{ margin: 0, fontWeight: "bold" }}>
+                Body Fat %: {selectedClient?.bodyFatPercentage ?? "N/A"}
+              </p>
+              <p style={{ width: "100%", height: "100%", margin: 0, whiteSpace: "pre-wrap" }}>
+                {performanceHistory}
+              </p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleReportClose}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,77 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+import usePolling from '../../hooks/usePolling';
 
 const UsersTable = () => {
-  const [users, setUsers] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchUsers();
+  const fetchMembers = useCallback(async () => {
+    try {
+      const authData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
+    }
+      const response = await fetch('https://localhost:7052/Members', {
+        headers: {
+          'Authorization': `Bearer ${authData?.token}`
+        }
+      });
+      
+      if (!response.ok) throw new Error('Failed to fetch');
+      
+      const data = await response.json();
+      setMembers(data.data);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const fetchUsers = () => {
-    fetch('http://localhost:5281/api/users/all')
-      .then((res) => res.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.error('Error fetching users:', err));
-  };
+  // استخدام البولينج كل 4 ثواني
+  usePolling(fetchMembers, 4000);
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this user?')) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`http://localhost:5281/api/users/delete/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        alert('User deleted successfully!');
-        fetchUsers(); // Refresh the table after deletion
-      } else {
-        const errorData = await response.json();
-        alert(errorData.message || 'Failed to delete user.');
-      }
-    } catch (err) {
-      console.error('Error deleting user:', err);
-    }
-  };
+  if (loading && members.length === 0) return <div>Loading initial data...</div>;
 
   return (
-    <div style={{ width: '70%', marginTop: '20px' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '15px' }}>ALL USERS</h2>
+    <div style={{width: "70%", marginTop: "20px"}}>
+      <h2 style={{textAlign: "center", marginBottom: "15px"}}>
+        ALL USERS 
+        {error && <small className="text-danger ml-2">Error: {error}</small>}
+      </h2>
+      
       <Table striped hover bordered>
         <thead>
           <tr>
-            <th>Id</th>
+            <th style={{width: '3%'}}>#</th>
             <th>Name</th>
-            <th>Username</th>
             <th>Age</th>
-            
-            {/* <th>Plan</th> */}
-            <th>Type</th>
-            <th>Actions</th> {/* New column for delete button */}
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={user.id}>
+          {members.map((member, index) => (
+            <tr key={member.id || index}>
               <td>{index + 1}</td>
-              <td>{user.firstName} {user.lastName}</td>
-              <td>{user.username}</td>
-              <td>{user.age}</td>
-              {/* <td>{user.plan}</td> */}
-              <td>{user.type}</td>
-              <td>
-                <Button 
-                  variant="danger" 
-                  size="sm" 
-                  onClick={() => handleDelete(user.id)}
-                >
-                  Delete
-                </Button>
-              </td>
+              <td>{member.name || 'N/A'}</td>
+              <td>{member.age || 'N/A'}</td>
             </tr>
           ))}
         </tbody>

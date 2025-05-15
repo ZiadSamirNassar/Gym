@@ -127,9 +127,8 @@ const SessionCard = ({ session, variant, onJoinClick }) => {
       <Card className="mb-3 p-4 d-flex flex-row justify-content-between align-items-center rounded-4 border-3">
         <div>
           <div className="d-flex mb-2">
-            <Card.Title className="fs-5 m-0">{session.title}</Card.Title>
+            <Card.Title className="fs-5 m-0">{session.name}</Card.Title>
           </div>
-          <Card.Subtitle className="fs-6 fw-semibold text-secondary">By {session.trainerName}</Card.Subtitle>
         </div>
         <div className="d-flex gap-5 align-items-center">
           <div>
@@ -137,12 +136,14 @@ const SessionCard = ({ session, variant, onJoinClick }) => {
               <CalendarPlus color="gray" /> {session.date}
             </div>
             <div className="fw-semibold fs-6 text-secondary">
-              <Alarm color="gray" /> {session.time}
+              <Alarm color="gray" /> {session.time}:00
             </div>
           </div>
 
           {variant === "trash" && (
-            <Button variant="danger" size="sm" className="shadow" style={{ height: "40px", width: "40px" }}>
+            <Button variant="danger" size="sm" className="shadow" style={{ height: "40px", width: "40px" }}
+              onClick={onJoinClick}
+            >
               <Trash size={22} />
             </Button>
           )}

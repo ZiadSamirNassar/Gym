@@ -3,16 +3,6 @@ import TrainingPlan from "../../components/TrainingPlan";
 import { useState, useEffect } from "react";
 
 const MemberPlans = () => {
-  localStorage.setItem(
-    "token",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiem96IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoibWVtYmVyIiwiZXhwIjoxNzQ3MjE2MjgzLCJpc3MiOiJNeUd5bUFwcCIsImF1ZCI6Ik15R3ltQXBwQXVkaWVuY2UifQ.zJ0_npvuuMm_l4Q2Cw9DvDuCq4PHpFPAL6Ou1zoRLrY"
-  );
-
-  localStorage.setItem(
-    "type",
-    "member"
-  );
-
   const [trainingPlans, setTrainingPlans] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);

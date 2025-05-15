@@ -1,219 +1,114 @@
-// import React, { useState } from 'react';
-// import { Container, Form, Button, Alert } from 'react-bootstrap';
-// import Topimg from '../../shared/Topimg';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-// const Login = () => {
-//   const [formData, setFormData] = useState({
-//     username: '',
-//     password: '',
-//   });
-
-//   const [error, setError] = useState('');
-//   const [success, setSuccess] = useState(false);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value,
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Validate form fields
-//     if (!formData.username || !formData.password) {
-//       setError('Please fill in both username and password.');
-//       return;
-//     }
-
-//     try {
-//       const response = await fetch('http://localhost:5281/api/auth/login', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formData),
-//       });
-
-//       const data = await response.json();
-
-//       if (response.ok) {
-//         // Handle successful login, e.g., store token in localStorage or cookies
-//         localStorage.setItem('token', data.token); // Assuming backend returns a token
-//         setSuccess(true);
-//         setError('');
-//       } else {
-//         setError(data.message || 'Invalid credentials. Please try again.');
-//       }
-//     } catch (err) {
-//       setError('Login failed. Please try again later.');
-//     }
-//   };
-
-//   return (
-//     <>
-//       <Topimg />
-//       <Container className="d-grid gap-2 mt-5">
-//         <h2 className="text-center mb-4">Login</h2>
-//         {error && <Alert variant="danger">{error}</Alert>}
-//         {success && <Alert variant="success">Login successful!</Alert>}
-//         <Form onSubmit={handleSubmit}>
-//           {/* Username Input */}
-//           <Form.Group className="mb-3" controlId="username">
-//             <Form.Control
-//               type="text"
-//               placeholder="Enter username"
-//               name="username"
-//               value={formData.username}
-//               onChange={handleChange}
-//             />
-//           </Form.Group>
-
-//           {/* Password Input */}
-//           <Form.Group className="mb-3" controlId="password">
-//             <Form.Control
-//               type="password"
-//               placeholder="Enter password"
-//               name="password"
-//               value={formData.password}
-//               onChange={handleChange}
-//             />
-//           </Form.Group>
-
-//           <Button variant="primary" type="submit" className="w-100">
-//             Log in
-//           </Button>
-//         </Form>
-//       </Container>
-//     </>
-//   );
-// };
-
-// export default Login;
+import Topimg from '../../shared/Topimg'
 import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; //  import navigate hook
-import Topimg from '../../shared/Topimg';
+import { 
+  Container,
+  Form, 
+  Button, 
+} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); //  setup navigation
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.username || !formData.password) {
-      setError('Please fill in both username and password.');
-      return;
-    }
+    setError('');
+    setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5281/api/auth/login', {
+      const response = await fetch('https://localhost:7052/auth/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          username: email, 
+          password 
+        }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        localStorage.setItem('token', data.token); // Store token
-        setSuccess(true);
-        setError('');
-
-        //  Redirect based on user type
-        // switch (data.type || data.status) {
-        //   case 'Admin':
-        //     navigate('/admin');
-        //     break;
-        //   case 'Trainer':
-        //     navigate('/t');
-        //     break;
-        //   case 'Member':
-        //     navigate('/');
-        //     break;
-        //   default:
-        //     navigate('/');
-        // }
-
-        switch (true) {
-          case data.type === 'Admin':
-            navigate('/admin');
-            break;
-          case data.type === 'Trainer':
-            navigate('/t');
-            break;
-          case data.type === 'Member' && data.status === 'subscribed':
-            navigate('/m');
-            break;
-          case data.type === 'Member':
-            navigate('/');
-            break;
-          default:
-            navigate('/');
-        }
-      } else {
-        setError(data.message || 'Invalid credentials. Please try again.');
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
       }
+
+      localStorage.setItem('type', data.data.role);
+      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('membershipPlanName', data.data.membershipPlanName);
+      localStorage.setItem('username', data.data.username);
+
+      console.log('Login successful:', data);
+
+      // Redirect based on user role
+      if (data.data.role === 'admin') {
+        navigate('/admin');
+      } else if (data.data.role === 'trainer') {
+        navigate('/t')
+      }else {
+        navigate('/m');
+      }
+
     } catch (err) {
-      setError('Login failed. Please try again later.');
+      setError(err.message || 'Invalid credentials');
+    } finally {
+      setIsLoading(false);
     }
   };
+
+
+
 
   return (
     <>
       <Topimg />
+
       <Container className="d-grid gap-2 mt-5">
         <h2 className="text-center mb-4">Login</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        {success && <Alert variant="success">Login successful!</Alert>}
+        {error && <div className="alert alert-danger">{error}</div>}
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="username">
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email or Username</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
+              placeholder="Enter email or username"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="password">
+            <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100">
-            Log in
+          <Button 
+            variant="primary" 
+            type="submit" 
+            className="w-100 mt-3"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Logging in...' : 'Log in'}
           </Button>
         </Form>
       </Container>
     </>
   );
-};
+}
 
 export default Login;
