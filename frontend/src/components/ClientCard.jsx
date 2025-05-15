@@ -9,10 +9,7 @@ const ClientCard = ({ client, onMakePlan, onUpdateReport }) => {
             <Card.Title className="fs-5 m-0">{ client.name }</Card.Title>
             <PlanLabel variant="gold"/>
           </div>
-          <div>
-            <p className="m-0">sessions: 2/10</p>
-            <p className="m-0">weight: null</p>
-            <p className="m-0">height: 5'7"</p>
+          <div style={{height: "100px"}}>
           </div>
           <div>
             <Button variant="dark" onClick={onUpdateReport} className="px-5 py-2 rounded-1 shadow w-100 mb-2">Update performance report</Button>

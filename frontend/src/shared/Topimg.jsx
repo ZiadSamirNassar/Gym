@@ -34,7 +34,7 @@ const Topimg = () => {
           fontWeight: 'bold',
         }}
       >
-       Let's Goooo!
+        Welcome to Our Gym
       </div>
     </div>
   );

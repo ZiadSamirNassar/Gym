@@ -1,204 +1,256 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useCallback } from 'react';
+import { Table, Button, Modal, Form, Alert } from 'react-bootstrap';
+import usePolling from '../../hooks/usePolling';
 
 const TrainersTable = () => {
   const [trainers, setTrainers] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [showMoreModal, setShowMoreModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
   const [currentTrainer, setCurrentTrainer] = useState(null);
-  const [formMode, setFormMode] = useState("add"); // or "edit"
-
-  const initialForm = {
-    firstName: '',
-    lastName: '',
-    email: '',
+  const [formData, setFormData] = useState({
     username: '',
     password: '',
-    specialization: '',
-    experience: '',
-    role: 'Trainer'
-  };
-  const [formData, setFormData] = useState(initialForm);
+    name: '',
+    age: ''
+  });
 
-  const fetchTrainers = async () => {
+  const fetchTrainers = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:5281/api/trainers/all');
-      const data = await response.json();
-      setTrainers(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Error fetching trainers:', error);
-    } finally {
-      setLoading(false);
+      const authData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
     }
-  };
-
-  useEffect(() => {
-    fetchTrainers();
+      const response = await fetch('https://localhost:7052/Trainer', {
+        headers: {
+          'Authorization': `Bearer ${authData?.token}`
+        }
+      });
+      const data = await response.json();
+      
+      // Check if all trainers have trainerId
+      if (!data.data.every(trainer => trainer.trainerId)) {
+        console.error("Some Trainers Don't Have trainerId", data.data);
+        throw new Error('Trainer data is not complete');
+      }
+      
+      setTrainers(data.data);
+    } catch (err) {
+      console.error('Error fetching trainers:', err);
+      setError(err.message);
+    }
   }, []);
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this trainer?")) return;
+  usePolling(fetchTrainers, 4000);
 
-    try {
-      await fetch(`http://localhost:5281/api/trainers/delete/${id}`, {
-        method: 'DELETE'
-      });
-      setTrainers(trainers.filter(t => t.id !== id));
-    } catch (err) {
-      console.error('Delete failed:', err);
-    }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleShowMore = (trainer) => {
-    setCurrentTrainer(trainer);
-    setShowMoreModal(true);
-  };
-
-  const handleEdit = (trainer) => {
-    setFormMode("edit");
-    setCurrentTrainer(trainer);
-    setFormData({ ...trainer });
+  const handleAddTrainer = () => {
+    setModalTitle('Add New Trainer');
+    setFormData({
+      username: '',
+      password: '',
+      name: '',
+      age: ''
+    });
+    setCurrentTrainer(null);
     setShowModal(true);
   };
 
-  const handleAdd = () => {
-    setFormMode("add");
-    setFormData(initialForm);
+  const handleEditTrainer = (trainer) => {
+    if (!trainer.trainerId) {
+      console.error("Trainer doesn't have trainerId", trainer);
+      setError('Cannot update trainer without ID');
+      return;
+    }
+  
+    setModalTitle('Edit Trainer');
+    setFormData({
+      username: trainer.username,
+      password: '',
+      name: trainer.name,
+      age: trainer.age
+    });
+    setCurrentTrainer(trainer);
     setShowModal(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const url =
-        formMode === "add"
-          ? 'http://localhost:5281/api/trainers/add'
-          : `http://localhost:5281/api/trainers/update/${currentTrainer.id}`;
+      const authData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
+    }
+      
+      if (currentTrainer && !currentTrainer.trainerId) {
+        throw new Error('Trainer ID is missing');
+      }
 
-      const method = formMode === "add" ? 'POST' : 'PUT';
+      const url = currentTrainer 
+        ? 'https://localhost:7052/Trainer/${currentTrainer.trainerId}'
+        : 'https://localhost:7052/Trainer';
+
+      const method = currentTrainer ? 'PUT' : 'POST';
+      
+      const requestBody = currentTrainer
+        ? { name: formData.name, age: parseInt(formData.age) }
+        : {
+            username: formData.username,
+            password: formData.password,
+            name: formData.name,
+            age: parseInt(formData.age)
+          };
+
+      console.log('Sending request to:', url, 'with:', requestBody);
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Authorization': `Bearer ${authData?.token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
       });
 
-      if (!response.ok) throw new Error('Error submitting trainer');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Operation failed');
+      }
 
-      await fetchTrainers();
+      fetchTrainers();
       setShowModal(false);
+      setError(null);
     } catch (err) {
-      console.error('Submit error:', err);
+      console.error('Error:', err);
+      setError(err.message);
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-
   return (
-    <div style={{ width: "70%", marginTop: "20px" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "15px" }}>ALL TRAINERS</h2>
-      <Button variant="success" onClick={handleAdd} style={{ marginBottom: "15px" }}>Add Trainer +</Button>
+    <div style={{width: "70%", marginTop: "20px"}}>
+      <h2 style={{textAlign: "center", marginBottom: "15px"}}>
+        ALL TRAINERS (Auto-refresh)
+      </h2>
+      
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      <Button 
+        variant="success" 
+        style={{marginBottom: "15px"}}
+        onClick={handleAddTrainer}
+      >
+        Add Trainer +
+      </Button>
 
       <Table striped hover bordered>
         <thead>
           <tr>
-            <th style={{ width: '3%' }}>Id</th>
+            <th style={{width: '3%'}}>#</th>
             <th>Name</th>
-            <th>Email</th>
-            <th style={{ textAlign: "center" }}>Action</th>
+            <th>Age</th>
+            <th>Username</th>
+            <th style={{textAlign: "center"}}>Action</th>
           </tr>
         </thead>
+
         <tbody>
-          {trainers.map((trainer, index) => (
-            <tr key={trainer.id}>
-              <td>{index + 1}</td>
-              <td>{trainer.firstName} {trainer.lastName}</td>
-              <td>{trainer.email}</td>
-              <td style={{ display: 'flex', justifyContent: "space-evenly" }}>
-                <Button variant='info' size="sm" onClick={() => handleShowMore(trainer)}>Show more</Button>
-                <Button variant='danger' size="sm" onClick={() => handleDelete(trainer.id)}>Delete</Button>
-                <Button variant='success' size="sm" onClick={() => handleEdit(trainer)}>Update</Button>
-              </td>
-            </tr>
-          ))}
+          {trainers.map((trainer, index) => {
+            if (!trainer.trainerId) {
+              console.error('Trainer without ID:', trainer);
+              return null;
+            }
+            return (
+              <tr key={trainer.trainerId}>
+                <td>{index + 1}</td>
+                <td>{trainer.name || 'N/A'}</td>
+                <td>{trainer.age || 'N/A'}</td>
+                <td>{trainer.username || 'N/A'}</td>
+                <td style={{display: 'flex', justifyContent: "space-evenly"}}>
+                  <Button 
+                    variant='success' 
+                    size="sm" 
+                    onClick={() => handleEditTrainer(trainer)}
+                  >
+                    Update
+                  </Button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
 
-      {/* Add / Edit Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Form onSubmit={handleSubmit}>
-          <Modal.Header closeButton>
-            <Modal.Title>{formMode === "add" ? "Add Trainer" : "Edit Trainer"}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Group className="mb-2">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} required />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} required />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Username</Form.Label>
-              <Form.Control value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} required />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required={formMode === "add"} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Specialization</Form.Label>
-              <Form.Control value={formData.specialization} onChange={(e) => setFormData({ ...formData, specialization: e.target.value })} required />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Experience (years)</Form.Label>
-              <Form.Control type="number" value={formData.experience} onChange={(e) => setFormData({ ...formData, experience: parseInt(e.target.value) })} required />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Role</Form.Label>
-              <Form.Control value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} required />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-            <Button type="submit" variant="primary">{formMode === "add" ? "Add" : "Update"}</Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
-
-      {/* Show More Modal */}
-      <Modal show={showMoreModal} onHide={() => setShowMoreModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Trainer Details</Modal.Title>
+          <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {currentTrainer && (
-            <>
-              <p><strong>Name:</strong> {currentTrainer.firstName} {currentTrainer.lastName}</p>
-              <p><strong>Email:</strong> {currentTrainer.email}</p>
-              <p><strong>Username:</strong> {currentTrainer.username}</p>
-              <p><strong>Password:</strong> {currentTrainer.password}</p>
-              <p><strong>Specialization:</strong> {currentTrainer.specialization}</p>
-              <p><strong>Experience:</strong> {currentTrainer.experience} years</p>
-              <p><strong>Role:</strong> {currentTrainer.role}</p>
-              
-            </>
-          )}
+          <Form onSubmit={handleSubmit}>
+            {!currentTrainer && (
+              <>
+                <Form.Group className="mb-3">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required={!currentTrainer}
+                  />
+                </Form.Group>
+              </>
+            )}
+            <Form.Group className="mb-3">
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Age</Form.Label>
+              <Form.Control
+                type="number"
+                name="age"
+                value={formData.age}
+                onChange={handleInputChange}
+                required
+                min="18"
+              />
+            </Form.Group>
+            <div className="d-flex justify-content-end">
+              <Button variant="secondary" onClick={() => setShowModal(false)} className="me-2">
+                Cancel
+              </Button>
+              <Button variant="primary" type="submit">
+                {currentTrainer ? 'Update' : 'Save'}
+              </Button>
+            </div>
+          </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowMoreModal(false)}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

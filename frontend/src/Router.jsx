@@ -34,7 +34,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: ( 
+      <ProtectedRoute allowedType="admin">
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/m",

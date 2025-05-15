@@ -1,10 +1,18 @@
 import { Navbar, Container, Button, Nav } from 'react-bootstrap';
 import PlanLabel from './PlanLabel';
 import { House, ClipboardCheck, ChatDots, People } from 'react-bootstrap-icons';
-import { Link } from 'react-router';
+import { Link, Navigate } from 'react-router';
 
 const Frame = ({ role }) => {
   const membershipPlan = localStorage.getItem("membershipPlanName");
+
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("type");
+    localStorage.removeItem("membershipPlanName");
+    window.location.href = "/login";
+  }
   return (
     <>
       <Navbar bg="white" expand="lg" className="z-3 position-fixed shadow-sm py-2 px-4 w-100" style={{ borderBottom: '1px solid #eee' }}>
@@ -43,6 +51,11 @@ const Frame = ({ role }) => {
             <ChatDots size={22} />
             <div>Chat</div>
           </Link>
+
+          <div onClick={logout} className="text-decoration-none d-flex align-items-center gap-3 justify-content-start bg-black text-white w-75 p-3 rounded-3">
+            <ChatDots size={22} />
+            <div>Log out</div>
+          </div>
         </Container>
       </div>
     </>

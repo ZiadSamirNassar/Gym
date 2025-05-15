@@ -1,344 +1,292 @@
-// import React, { useEffect, useState } from 'react';
-// import Button from 'react-bootstrap/Button';
-// import Table from 'react-bootstrap/Table';
-// import Modal from 'react-bootstrap/Modal';
-// import Form from 'react-bootstrap/Form';
-
-// const MembershipTable = () => {
-//   const [memberships, setMemberships] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   const [showModal, setShowModal] = useState(false);
-//   const [modalType, setModalType] = useState("add"); // "add" or "update"
-//   const [selectedMembership, setSelectedMembership] = useState({
-//     id: 0,
-//     name: '',
-//     duration: '',
-//     price: ''
-//   });
-
-//   const fetchMemberships = async () => {
-//     try {
-//       const res = await fetch('http://localhost:5281/api/memberships/all');
-//       const data = await res.json();
-//       setMemberships(data);
-//     } catch (err) {
-//       console.error("Fetch Error:", err);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchMemberships();
-//   }, []);
-
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setSelectedMembership(prev => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleAdd = () => {
-//     setSelectedMembership({ name: '', duration: '', price: '' });
-//     setModalType("add");
-//     setShowModal(true);
-//   };
-
-//   const handleEdit = (membership) => {
-//     setSelectedMembership(membership);
-//     setModalType("update");
-//     setShowModal(true);
-//   };
-
-//   const handleDelete = async (id) => {
-//     if (!window.confirm("Are you sure to delete this membership?")) return;
-
-//     await fetch(`http://localhost:5281/api/memberships/delete/${id}`, {
-//       method: 'DELETE'
-//     });
-//     fetchMemberships();
-//   };
-
-//   const handleSubmit = async () => {
-//     const url = modalType === "add"
-//       ? 'http://localhost:5281/api/memberships/add'
-//       : `http://localhost:5281/api/memberships/update/${selectedMembership.id}`;
-
-//     const method = modalType === "add" ? "POST" : "PUT";
-
-//     await fetch(url, {
-//       method,
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(selectedMembership)
-//     });
-
-//     setShowModal(false);
-//     fetchMemberships();
-//   };
-
-//   if (loading) return <p>Loading memberships...</p>;
-
-//   return (
-//     <div style={{ width: "70%", marginTop: "20px" }}>
-//       <h2 style={{ textAlign: "center", marginBottom: "15px" }}>ALL MEMBERSHIPS</h2>
-//       <Button variant="success" style={{ marginBottom: "15px" }} onClick={handleAdd}>Add Membership +</Button>
-
-//       <Table striped hover bordered>
-//         <thead>
-//           <tr>
-//             <th style={{ width: '3%' }}>Id</th>
-//             <th>Name</th>
-//             <th>Duration</th>
-//             <th>Price ($)</th>
-//             <th style={{ textAlign: 'center' }}>Action</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {memberships.map((m) => (
-//             <tr key={m.id}>
-//               <td>{m.id}</td>
-//               <td>{m.name}</td>
-//               <td>{m.duration}</td>
-//               <td>{m.price}</td>
-//               <td style={{ display: 'flex', justifyContent: "space-evenly" }}>
-//                 <Button variant='info' size="sm" onClick={() => alert(`Name: ${m.name}\nDuration: ${m.duration}\nPrice: $${m.price}`)}>Show more</Button>
-//                 <Button variant='danger' size="sm" onClick={() => handleDelete(m.id)}>Delete</Button>
-//                 <Button variant='success' size="sm" onClick={() => handleEdit(m)}>Update</Button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </Table>
-
-//       {/* Modal for Add / Edit */}
-//       <Modal show={showModal} onHide={() => setShowModal(false)}>
-//         <Modal.Header closeButton>
-//           <Modal.Title>{modalType === "add" ? "Add Membership" : "Update Membership"}</Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//           <Form>
-//             <Form.Group controlId="formName" className="mb-2">
-//               <Form.Label>Name</Form.Label>
-//               <Form.Control type="text" name="name" value={selectedMembership.name} onChange={handleInputChange} />
-//             </Form.Group>
-//             <Form.Group controlId="formDuration" className="mb-2">
-//               <Form.Label>Duration</Form.Label>
-//               <Form.Control type="text" name="duration" value={selectedMembership.duration} onChange={handleInputChange} />
-//             </Form.Group>
-//             <Form.Group controlId="formPrice" className="mb-2">
-//               <Form.Label>Price</Form.Label>
-//               <Form.Control type="number" name="price" value={selectedMembership.price} onChange={handleInputChange} />
-//             </Form.Group>
-//           </Form>
-//         </Modal.Body>
-//         <Modal.Footer>
-//           <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-//           <Button variant="primary" onClick={handleSubmit}>{modalType === "add" ? "Add" : "Update"}</Button>
-//         </Modal.Footer>
-//       </Modal>
-//     </div>
-//   );
-// };
-
-// export default MembershipTable;
-
-
-
-
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useCallback } from 'react';
+import { Table, Button, Modal, Form, Alert } from 'react-bootstrap';
+import usePolling from '../../hooks/usePolling';
 
 const MembershipTable = () => {
-  const [memberships, setMemberships] = useState([]);
+  const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState("add"); // "add" or "update"
-  const [selectedMembership, setSelectedMembership] = useState({
-    id: 0,
+  const [modalTitle, setModalTitle] = useState('');
+  const [currentPlan, setCurrentPlan] = useState(null);
+  const [formData, setFormData] = useState({
     name: '',
     duration: '',
     price: '',
-    benefits: ''
+    benefits: '',
+    personalSessions: ''
   });
 
-  const fetchMemberships = async () => {
+  const fetchPlans = useCallback(async () => {
     try {
-      const res = await fetch('http://localhost:5281/api/memberships/all');
-      const data = await res.json();
-      setMemberships(data);
+      const authData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
+    }
+      const response = await fetch('https://localhost:7052/MembershipPlan', {
+        headers: {
+          'Authorization': `Bearer ${authData?.token}`
+        }
+      });
+      const data = await response.json();
+      setPlans(data.data);
+      setError(null);
     } catch (err) {
-      console.error("Fetch Error:", err);
+      setError('Failed to fetch membership plans');
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchMemberships();
   }, []);
+
+  usePolling(fetchPlans, 4000);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setSelectedMembership(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleAdd = () => {
-    setSelectedMembership({ id: 0, name: '', duration: '', price: '', benefits: '' });
-    setModalType("add");
+  const handleAddPlan = () => {
+    setModalTitle('Add New Membership Plan');
+    setFormData({
+      name: '',
+      duration: '',
+      price: '',
+      benefits: '',
+      personalSessions: ''
+    });
+    setCurrentPlan(null);
     setShowModal(true);
   };
 
-  const handleEdit = (membership) => {
-    setSelectedMembership(membership);
-    setModalType("update");
+  const handleEditPlan = (plan) => {
+    setModalTitle('Edit Membership Plan');
+    setFormData({
+      name: plan.name,
+      duration: plan.duration,
+      price: plan.price,
+      benefits: plan.benefits,
+      personalSessions: plan.personalSessions
+    });
+    setCurrentPlan(plan);
     setShowModal(true);
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure to delete this membership?")) return;
+  const handleDeletePlan = async (planId) => {
+    if (window.confirm('Are you sure you want to delete this plan?')) {
+      try {
+        const authData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
+    }       
+          const response = await fetch(`https://localhost:7052/MembershipPlan/${planId}, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': Bearer ${authData?.token}
+          }
+        }`);
 
-    await fetch(`http://localhost:5281/api/memberships/delete/${id}`, {
-      method: 'DELETE'
-    });
-    fetchMemberships();
+        if (!response.ok) {
+          throw new Error('Failed to delete plan');
+        }
+
+        fetchPlans();
+      } catch (err) {
+        setError(err.message);
+      }
+    }
   };
 
-  const handleSubmit = async () => {
-    const url = modalType === "add"
-      ? 'http://localhost:5281/api/memberships/add'
-      : `http://localhost:5281/api/memberships/update/${selectedMembership.id}`;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const authData = { 
+      token: localStorage.getItem("token"),
+      role: localStorage.getItem("type"),
+      username: localStorage.getItem("username"),
+    }     
+    const url = currentPlan 
+        ? `https://localhost:7052/MembershipPlan/${currentPlan.planId}`
+        : 'https://localhost:7052/MembershipPlan';
 
-    const method = modalType === "add" ? "POST" : "PUT";
+      const method = currentPlan ? 'PUT' : 'POST';
+      
+      const requestBody = {
+        name: formData.name,
+        duration: parseInt(formData.duration),
+        price: parseFloat(formData.price),
+        benefits: formData.benefits,
+        personalSessions: parseInt(formData.personalSessions)
+      };
 
-    await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(selectedMembership)
-    });
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Authorization': `Bearer ${authData?.token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
 
-    setShowModal(false);
-    fetchMemberships();
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Operation failed');
+      }
+
+      fetchPlans();
+      setShowModal(false);
+    } catch (err) {
+      setError(err.message);
+    }
   };
-
-  if (loading) return <p>Loading memberships...</p>;
 
   return (
-    <div style={{ width: "80%", marginTop: "20px", marginInline: "auto" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "15px" }}>ALL MEMBERSHIPS</h2>
-      <Button variant="success" style={{ marginBottom: "15px" }} onClick={handleAdd}>
+    <div style={{width: "70%", marginTop: "20px"}}>
+      <h2 style={{textAlign: "center", marginBottom: "15px"}}>
+        MEMBERSHIP PLANS (Real-time)
+      </h2>
+      
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      <Button 
+        variant="success" 
+        style={{marginBottom: "15px"}}
+        onClick={handleAddPlan}
+      >
         Add Membership +
       </Button>
 
-      <Table striped hover bordered>
-        <thead>
-          <tr>
-            <th style={{ width: '3%' }}>Id</th>
-            <th>Name</th>
-            <th>Duration</th>
-            <th>Price ($)</th>
-            <th>Benefits</th>
-            <th style={{ textAlign: 'center' }}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {memberships.map((m) => (
-            <tr key={m.id}>
-              <td>{m.id}</td>
-              <td>{m.name}</td>
-              <td>{m.duration}</td>
-              <td>{m.price}</td>
-              <td>{m.benefits}</td>
-              <td style={{ display: 'flex', justifyContent: "space-evenly" }}>
-                <Button
-                  variant='info'
-                  size="sm"
-                  onClick={() => alert(
-                    `Name: ${m.name}\nDuration: ${m.duration}\nPrice: $${m.price}\nBenefits: ${m.benefits}`
-                  )}
-                >
-                  Show more
-                </Button>
-                <Button
-                  variant='danger'
-                  size="sm"
-                  onClick={() => handleDelete(m.id)}
-                >
-                  Delete
-                </Button>
-                <Button
-                  variant='success'
-                  size="sm"
-                  onClick={() => handleEdit(m)}
-                >
-                  Update
-                </Button>
-              </td>
+      {loading ? (
+        <div className="text-center">Loading plans...</div>
+      ) : (
+        <Table striped hover bordered>
+          <thead>
+            <tr>
+              <th style={{width: '3%'}}>#</th>
+              <th>Name</th>
+              <th>Duration (day)</th>
+              <th>Price ($)</th>
+              <th>personalSessions</th>
+              <th style={{textAlign: "center"}}>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {plans.map((plan, index) => (
+              <tr key={plan.planId || index}>
+                <td>{index + 1}</td>
+                <td>{plan.name}</td>
+                <td>{plan.duration}</td>
+                <td>{plan.price}</td>
+                <td>{plan.personalSessions}</td>
+                <td style={{display: 'flex', justifyContent: "space-evenly"}}>
+                  <Button 
+                    variant='success' 
+                    size="sm"
+                    onClick={() => handleEditPlan(plan)}
+                  >
+                    Update
+                  </Button>
+                  <Button 
+                    variant='danger' 
+                    size="sm"
+                    onClick={() => handleDeletePlan(plan.planId)}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
 
-      {/* Modal for Add / Edit */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>{modalType === "add" ? "Add Membership" : "Update Membership"}</Modal.Title>
+          <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group controlId="formName" className="mb-2">
-              <Form.Label>Name</Form.Label>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Plan Name</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
-                value={selectedMembership.name}
+                value={formData.name}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
-            <Form.Group controlId="formDuration" className="mb-2">
-              <Form.Label>Duration</Form.Label>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Duration (months)</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 name="duration"
-                value={selectedMembership.duration}
+                value={formData.duration}
                 onChange={handleInputChange}
+                required
+                min="1"
               />
             </Form.Group>
-            <Form.Group controlId="formPrice" className="mb-2">
-              <Form.Label>Price</Form.Label>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Price ($)</Form.Label>
               <Form.Control
                 type="number"
                 name="price"
-                value={selectedMembership.price}
+                value={formData.price}
                 onChange={handleInputChange}
+                required
+                min="0"
+                step="0.01"
               />
             </Form.Group>
-            <Form.Group controlId="formBenefits" className="mb-2">
+
+            <Form.Group className="mb-3">
               <Form.Label>Benefits</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={3}
                 name="benefits"
-                value={selectedMembership.benefits}
+                value={formData.benefits}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Personal Training Sessions</Form.Label>
+              <Form.Control
+                type="number"
+                name="personalSessions"
+                value={formData.personalSessions}
+                onChange={handleInputChange}
+                required
+                min="0"
+              />
+            </Form.Group>
+
+            <div className="d-flex justify-content-end">
+              <Button 
+                variant="secondary" 
+                onClick={() => setShowModal(false)} 
+                className="me-2"
+              >
+                Cancel
+              </Button>
+              <Button variant="primary" type="submit">
+                {currentPlan ? 'Update Plan' : 'Add Plan'}
+              </Button>
+            </div>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            {modalType === "add" ? "Add" : "Update"}
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
 };
 
 export default MembershipTable;
-
