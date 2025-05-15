@@ -3,6 +3,7 @@ import MembershipTable from "../../components/admin/MembershipTable";
 import UsersTable from "../../components/admin/UsersTable";
 import TranersTable from "../../components/admin/TranersTable";
 import { useNavigate } from "react-router-dom";
+import GroupSessionTable from "../../components/admin/GroupSessionTable";
 
 const DashBoard = () => {
   const [authData, setAuthData] = useState(null);
@@ -33,6 +34,7 @@ const DashBoard = () => {
       <UsersTable token={authData.token} />
       <TranersTable token={authData.token} />
       <MembershipTable token={authData.token} />
+      <GroupSessionTable token={authData.token} />
       <button
         style={{
           marginTop: "32px",
