@@ -65,12 +65,14 @@ const TrainersTable = () => {
     setShowModal(true);
   };
 
-  const handleEditTrainer = (trainer) => {
-    if (!trainer.trainerId) {
-      console.error("Trainer doesn't have trainerId", trainer);
-      setError('Cannot update trainer without ID');
-      return;
-    }
+const handleEditTrainer = (trainer) => {
+      console.log('Editing trainer:', trainer); // أضف هذا السطر
+     if (!trainer.trainerId) {
+        console.error("Trainer doesn't have trainerId", trainer);
+        setError('Cannot update trainer without ID');
+        return;
+      }
+
   
     setModalTitle('Edit Trainer');
     setFormData({
@@ -97,21 +99,19 @@ const TrainersTable = () => {
       }
 
       const url = currentTrainer 
-        ? 'https://localhost:7052/Trainer/${currentTrainer.trainerId}'
+        ? `https://localhost:7052/Trainer/${currentTrainer.trainerId}`
         : 'https://localhost:7052/Trainer';
 
       const method = currentTrainer ? 'PUT' : 'POST';
       
       const requestBody = currentTrainer
-        ? { name: formData.name, age: parseInt(formData.age) }
+        ? { name: formData.name, age: parseInt(formData.age) } // PUT
         : {
             username: formData.username,
             password: formData.password,
             name: formData.name,
             age: parseInt(formData.age)
-          };
-
-      console.log('Sending request to:', url, 'with:', requestBody);
+          }; // POST
 
       const response = await fetch(url, {
         method,
