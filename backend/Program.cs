@@ -26,6 +26,7 @@ builder.Services.AddDbContext<GymDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // 2. Add Controllers
+builder.Services.AddSingleton<IUserConnectionManager, UserConnectionManager>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 

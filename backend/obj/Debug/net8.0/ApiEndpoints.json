@@ -212,6 +212,22 @@
   },
   {
     "ContainingType": "Gym_project.Controllers.MessageController",
+    "Method": "SendMessage",
+    "RelativePath": "Message",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "messageDto",
+        "Type": "Gym_project.DTO.MessageDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym_project.Controllers.MessageController",
     "Method": "GetMessagesWithUser",
     "RelativePath": "Message/{userId}",
     "HttpMethod": "GET",
